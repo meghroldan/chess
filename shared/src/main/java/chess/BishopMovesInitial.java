@@ -46,6 +46,76 @@ public class BishopMovesInitial implements PieceMovements{
 
     }
 
+    tempRow = row;
+    tempCol = col;
+    for(int i = col - 1; i >= 1; i--){
+      tempRow++;
+      if(tempRow <= 8) {
+        tempPos=new ChessPosition(tempRow, i);
+        if (board.getPiece(tempPos) != null && board.getPiece(tempPos).getTeamColor() != currColor) {
+          tempMov=new ChessMove(myPosition, tempPos, null);
+          validMoves2.add(tempMov);
+          break;
+        }
+        if(board.getPiece(tempPos) != null) {
+          if (board.getPiece(tempPos).getTeamColor() == currColor) {
+            break;
+          }
+        }
+        if (board.getPiece(tempPos) == null) {
+          tempMov=new ChessMove(myPosition, tempPos, null);
+          validMoves2.add(tempMov);
+        }
+      }
+    }
+
+    tempRow = row;
+    tempCol = col;
+    for(int i = row - 1; i >= 1; i--){
+      tempCol--;
+      if(tempCol >= 1) {
+        tempPos=new ChessPosition(i, tempCol);
+        if (board.getPiece(tempPos) != null && board.getPiece(tempPos).getTeamColor() != currColor) {
+          tempMov=new ChessMove(myPosition, tempPos, null);
+          validMoves2.add(tempMov);
+          break;
+        }
+        if(board.getPiece(tempPos) != null) {
+          if (board.getPiece(tempPos).getTeamColor() == currColor) {
+            break;
+          }
+        }
+        if (board.getPiece(tempPos) == null) {
+          tempMov=new ChessMove(myPosition, tempPos, null);
+          validMoves2.add(tempMov);
+        }
+      }
+    }
+
+
+    tempRow = row;
+    tempCol = col;
+    for(int i = row + 1; i <= 8; i++){
+      tempCol++;
+      if(tempCol <= 8) {
+        tempPos=new ChessPosition(i, tempCol);
+        if (board.getPiece(tempPos) != null && board.getPiece(tempPos).getTeamColor() != currColor) {
+          tempMov=new ChessMove(myPosition, tempPos, null);
+          validMoves2.add(tempMov);
+          break;
+        }
+        if(board.getPiece(tempPos) != null) {
+          if (board.getPiece(tempPos).getTeamColor() == currColor) {
+            break;
+          }
+        }
+        if (board.getPiece(tempPos) == null) {
+          tempMov=new ChessMove(myPosition, tempPos, null);
+          validMoves2.add(tempMov);
+        }
+      }
+    }
+
     if(validMoves2 == null){
       return null;
     }
