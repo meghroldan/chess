@@ -38,6 +38,10 @@ public class ChessBoard {
         return temp;
     }
 
+    public Map<ChessPosition, ChessPiece> getAllPieces(){
+        return myPieces;
+    }
+
     /**
      * Sets the board to the default starting board
      * (How the game of chess normally starts)
