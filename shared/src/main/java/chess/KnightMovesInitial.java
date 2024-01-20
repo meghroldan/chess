@@ -27,9 +27,60 @@ public class KnightMovesInitial implements PieceMovements{
     ChessPosition tempPosition;
     ChessMove tempMove;
 
-    if(validMoves2 == null){
-      return null;
-    }
+
+      tempPosition = new ChessPosition(row - 2, col + 1);
+      tempMove = new ChessMove(myPosition, tempPosition, null);
+      if(board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor){
+        validMoves2.add(tempMove);
+      }
+
+      tempPosition = new ChessPosition(row - 2, col - 1);
+      tempMove = new ChessMove(myPosition, tempPosition, null);
+      if(board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor){
+        validMoves2.add(tempMove);
+      }
+
+      tempPosition = new ChessPosition(row + 2, col + 1);
+      tempMove = new ChessMove(myPosition, tempPosition, null);
+      if(board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor){
+        validMoves2.add(tempMove);
+      }
+
+      tempPosition = new ChessPosition(row + 2, col - 1);
+      tempMove = new ChessMove(myPosition, tempPosition, null);
+      if(board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor){
+        validMoves2.add(tempMove);
+      }
+
+      tempPosition = new ChessPosition(row + 1, col - 2);
+      tempMove = new ChessMove(myPosition, tempPosition, null);
+      if(board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor
+          || board.getPiece(tempPosition) == null){
+        validMoves2.add(tempMove);
+      }
+
+      tempPosition = new ChessPosition(row - 1, col - 2);
+      tempMove = new ChessMove(myPosition, tempPosition, null);
+      if(board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor
+              || board.getPiece(tempPosition) == null){
+        validMoves2.add(tempMove);
+      }
+
+      tempPosition = new ChessPosition(row + 1, col + 2);
+      tempMove = new ChessMove(myPosition, tempPosition, null);
+      if(board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor
+              || board.getPiece(tempPosition) == null){
+        validMoves2.add(tempMove);
+      }
+
+      tempPosition = new ChessPosition(row - 1, col + 2);
+      tempMove = new ChessMove(myPosition, tempPosition, null);
+      if(board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor
+              || board.getPiece(tempPosition) == null){
+        validMoves2.add(tempMove);
+      }
+
+
     return validMoves2;
   }
 }
