@@ -24,9 +24,9 @@ public class BishopMovesInitial implements PieceMovements{
     //debug this loop
     int tempRow = row;
     int tempCol = col;
-    for(int i = col + 1; i <= 8; i++){
+    for(int i = col + 1; i < 9; i++){
       tempRow--;
-      if(tempRow >= 1) {
+      if(tempRow > 0) {
         tempPos=new ChessPosition(tempRow, i);
         if (board.getPiece(tempPos) != null && board.getPiece(tempPos).getTeamColor() != currColor) {
           tempMov=new ChessMove(myPosition, tempPos, null);
@@ -48,9 +48,9 @@ public class BishopMovesInitial implements PieceMovements{
 
     tempRow = row;
     tempCol = col;
-    for(int i = col - 1; i >= 1; i--){
+    for(int i = col - 1; i > 0; i--){
       tempRow++;
-      if(tempRow <= 8) {
+      if(tempRow < 9) {
         tempPos=new ChessPosition(tempRow, i);
         if (board.getPiece(tempPos) != null && board.getPiece(tempPos).getTeamColor() != currColor) {
           tempMov=new ChessMove(myPosition, tempPos, null);
@@ -71,9 +71,9 @@ public class BishopMovesInitial implements PieceMovements{
 
     tempRow = row;
     tempCol = col;
-    for(int i = row - 1; i >= 1; i--){
+    for(int i = row - 1; i > 0; i--){
       tempCol--;
-      if(tempCol >= 1) {
+      if(tempCol > 0) {
         tempPos=new ChessPosition(i, tempCol);
         if (board.getPiece(tempPos) != null && board.getPiece(tempPos).getTeamColor() != currColor) {
           tempMov=new ChessMove(myPosition, tempPos, null);
@@ -95,9 +95,9 @@ public class BishopMovesInitial implements PieceMovements{
 
     tempRow = row;
     tempCol = col;
-    for(int i = row + 1; i <= 8; i++){
+    for(int i = row + 1; i < 9; i++){
       tempCol++;
-      if(tempCol <= 8) {
+      if(tempCol < 9) {
         tempPos=new ChessPosition(i, tempCol);
         if (board.getPiece(tempPos) != null && board.getPiece(tempPos).getTeamColor() != currColor) {
           tempMov=new ChessMove(myPosition, tempPos, null);

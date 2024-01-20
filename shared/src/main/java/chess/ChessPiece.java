@@ -62,6 +62,10 @@ public class ChessPiece {
         if(piece.getPieceType() == PieceType.BISHOP){
             return bishop.pieceMovesAvailable(board, myPosition);
         }
+        RookMovesInitial rook = new RookMovesInitial();
+        if(piece.getPieceType() == PieceType.ROOK){
+            return rook.pieceMovesAvailable(board, myPosition);
+        }
         return validMoves2;
     }
 }
