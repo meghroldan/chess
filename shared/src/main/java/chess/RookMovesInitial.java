@@ -91,10 +91,6 @@ public class RookMovesInitial implements PieceMovements{
 
     }
 
-    if(validMoves2 == null){
-      return null;
-    }
-
     return validMoves2;
   }
 }

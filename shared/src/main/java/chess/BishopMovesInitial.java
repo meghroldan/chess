@@ -116,9 +116,6 @@ public class BishopMovesInitial implements PieceMovements{
       }
     }
 
-    if(validMoves2 == null){
-      return null;
-    }
     return validMoves2;
   }
 }
