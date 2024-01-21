@@ -117,7 +117,7 @@ public class QueenMovesInitial implements PieceMovements{
     }
 
     ChessPosition tempPosition;
-    for(int i=tempRow+1; i < 9; i++){
+    for(int i = row + 1; i < 9; i++){
       tempPosition = new ChessPosition(i, col);
       if(pieces.containsKey(tempPosition) && pieces.get(tempPosition).getTeamColor() != currColor){
         tempMove = new ChessMove(myPosition, tempPosition, null);
@@ -133,7 +133,7 @@ public class QueenMovesInitial implements PieceMovements{
       }
     }
 
-    for(int i = tempRow-1; i > 0; i--){
+    for(int i = row-1; i > 0; i--){
       tempPosition = new ChessPosition(i, col);
       if(pieces.containsKey(tempPosition) && pieces.get(tempPosition).getTeamColor() != currColor){
         tempMove = new ChessMove(myPosition, tempPosition, null);
@@ -149,7 +149,7 @@ public class QueenMovesInitial implements PieceMovements{
       }
     }
 
-    for(int i = tempCol-1; i > 0; i--){
+    for(int i = col-1; i > 0; i--){
       tempPosition = new ChessPosition(row, i);
       if(pieces.containsKey(tempPosition) && pieces.get(tempPosition).getTeamColor() != currColor){
         tempMove = new ChessMove(myPosition, tempPosition, null);
@@ -166,7 +166,7 @@ public class QueenMovesInitial implements PieceMovements{
 
     }
 
-    for(int i = tempCol+1; i < 9; i++){
+    for(int i = col+1; i < 9; i++){
       tempPosition = new ChessPosition(row, i);
       if(pieces.containsKey(tempPosition) && pieces.get(tempPosition).getTeamColor() != currColor){
         tempMove = new ChessMove(myPosition, tempPosition, null);

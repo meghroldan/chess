@@ -71,6 +71,12 @@ public class ChessPiece {
         if(piece.getPieceType() == PieceType.KNIGHT){
             return knight.pieceMovesAvailable(board, myPosition);
         }
+
+        QueenMovesInitial queen = new QueenMovesInitial();
+        if(piece.getPieceType() == PieceType.QUEEN){
+            return queen.pieceMovesAvailable(board, myPosition);
+        }
+
         return validMoves2;
     }
 }
