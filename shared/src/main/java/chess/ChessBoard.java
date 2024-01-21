@@ -43,7 +43,7 @@ public class ChessBoard {
     }
 
     /**
-     * Sets the board to the default starting board
+     * Sets the board to the default starting board TODO:debug bc it's not working
      * (How the game of chess normally starts)
      */
     public void resetBoard() {

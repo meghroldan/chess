@@ -77,6 +77,11 @@ public class ChessPiece {
             return queen.pieceMovesAvailable(board, myPosition);
         }
 
+        KingMovesInitial king = new KingMovesInitial();
+        if(piece.getPieceType() == PieceType.KING){
+            return king.pieceMovesAvailable(board, myPosition);
+        }
+
         return validMoves2;
     }
 }
