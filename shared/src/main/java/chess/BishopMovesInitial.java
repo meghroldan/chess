@@ -110,7 +110,7 @@ public class BishopMovesInitial implements PieceMovements{
           }
         }
         if (board.getPiece(tempPos) == null) {
-          tempMov=new ChessMove(myPosition, tempPos, null);
+          tempMov = new ChessMove(myPosition, tempPos, null);
           validMoves2.add(tempMov);
         }
       }

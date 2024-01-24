@@ -48,54 +48,74 @@ public class ChessBoard {
      */
     public void resetBoard() {
         myPieces.clear();
-        for(int column = 1; column <= 8; column++){
-            ChessPiece tempW = new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.PAWN);
-            ChessPiece tempB = new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.PAWN);
-            ChessPosition white = new ChessPosition(2, column);
-            ChessPosition black = new ChessPosition(7, column);
+        for(int column = 1; column <= 8; column++) {
+            ChessPiece tempW=new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.PAWN);
+            ChessPiece tempB=new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.PAWN);
+            ChessPosition white=new ChessPosition(2, column);
+            ChessPosition black=new ChessPosition(7, column);
             myPieces.put(white, tempW);
-            myPieces.put(black, tempB);
-            if(column == 1 || column == 8){
-                ChessPiece tempWR = new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.ROOK);
-                ChessPiece tempBR = new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.ROOK);
-                ChessPosition whiteR = new ChessPosition(1, column);
-                ChessPosition blackR = new ChessPosition(8, column);
+            if (column == 1 || column == 8) {
+                ChessPiece tempWR=new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.ROOK);
+                ChessPiece tempBR=new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.ROOK);
+                ChessPosition whiteR=new ChessPosition(1, column);
+                ChessPosition blackR=new ChessPosition(8, column);
                 myPieces.put(whiteR, tempWR);
                 myPieces.put(blackR, tempBR);
             }
-            if(column == 2 || column == 7){
-                ChessPiece tempWN = new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.KNIGHT);
-                ChessPiece tempBN = new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.KNIGHT);
-                ChessPosition whiteN = new ChessPosition(1, column);
-                ChessPosition blackN = new ChessPosition(8, column);
-                myPieces.put(whiteN, tempWN);
-                myPieces.put(blackN, tempBN);
-            }
-            if(column == 3 || column == 6){
-                ChessPiece tempWB = new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.BISHOP);
-                ChessPiece tempBB = new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.BISHOP);
-                ChessPosition whiteB = new ChessPosition(1, column);
-                ChessPosition blackB = new ChessPosition(8, column);
+            if (column == 3 || column == 6) {
+                ChessPiece tempWB=new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.BISHOP);
+                ChessPiece tempBB=new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.BISHOP);
+                ChessPosition whiteB=new ChessPosition(1, column);
+                ChessPosition blackB=new ChessPosition(8, column);
                 myPieces.put(whiteB, tempWB);
                 myPieces.put(blackB, tempBB);
             }
-            if(column == 4){
-                ChessPiece tempWQ = new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.QUEEN);
-                ChessPiece tempBQ = new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.QUEEN);
-                ChessPosition whiteQ = new ChessPosition(1, column);
-                ChessPosition blackQ = new ChessPosition(8, column);
+            if (column == 2 || column == 7) {
+                ChessPiece tempWN=new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.KNIGHT);
+                ChessPiece tempBN=new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.KNIGHT);
+                ChessPosition whiteN=new ChessPosition(1, column);
+                ChessPosition blackN=new ChessPosition(8, column);
+                myPieces.put(whiteN, tempWN);
+                myPieces.put(blackN, tempBN);
+            }
+            myPieces.put(black, tempB);
+            if (column == 4) {
+                ChessPiece tempWQ=new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.QUEEN);
+                ChessPiece tempBQ=new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.QUEEN);
+                ChessPosition whiteQ=new ChessPosition(1, column);
+                ChessPosition blackQ=new ChessPosition(8, column);
                 myPieces.put(whiteQ, tempWQ);
                 myPieces.put(blackQ, tempBQ);
             }
-            if(column == 5){
-                ChessPiece tempWK = new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.KING);
-                ChessPiece tempBK = new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.KING);
-                ChessPosition whiteK = new ChessPosition(1, column);
-                ChessPosition blackK = new ChessPosition(8, column);
+            if (column == 5) {
+                ChessPiece tempWK=new ChessPiece(ChessGame.TeamColor.WHITE, ChessPiece.PieceType.KING);
+                ChessPiece tempBK=new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.KING);
+                ChessPosition whiteK=new ChessPosition(1, column);
+                ChessPosition blackK=new ChessPosition(8, column);
                 myPieces.put(whiteK, tempWK);
                 myPieces.put(blackK, tempBK);
             }
-
         }
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessBoard that=(ChessBoard) o;
+        return Objects.equals(myPieces, that.myPieces);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(myPieces);
+    }
+
+    @Override
+    public String toString() {
+        return "ChessBoard{" +
+                "myPieces=" + myPieces +
+                '}';
     }
 }

@@ -12,11 +12,14 @@ public class ChessMove {
 
     private ChessPosition firstPosition;
     private ChessPosition lastPosition;
+    private ChessPiece.PieceType promotion;
     private String stringVar;
 
     public ChessMove(ChessPosition startPosition, ChessPosition endPosition,
                      ChessPiece.PieceType promotionPiece) {
         firstPosition = startPosition;
+        lastPosition = endPosition;
+        promotion = promotionPiece;
     }
 
     /**
@@ -40,7 +43,7 @@ public class ChessMove {
      * @return Type of piece to promote a pawn to, or null if no promotion
      */
     public ChessPiece.PieceType getPromotionPiece() {
-        throw new RuntimeException("Not implemented");
+        return promotion;
     }
 
     @Override
