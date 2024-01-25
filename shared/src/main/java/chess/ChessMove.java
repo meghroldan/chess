@@ -47,24 +47,25 @@ public class ChessMove {
     }
 
     @Override
-    public String toString() {
-        return "ChessMove{" +
-                "firstPosition=" + firstPosition +
-                ", lastPosition=" + lastPosition +
-                ", stringVar='" + stringVar + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChessMove chessMove=(ChessMove) o;
-        return Objects.equals(firstPosition, chessMove.firstPosition) && Objects.equals(lastPosition, chessMove.lastPosition) && Objects.equals(stringVar, chessMove.stringVar);
+        return Objects.equals(firstPosition, chessMove.firstPosition) && Objects.equals(lastPosition, chessMove.lastPosition) && promotion == chessMove.promotion && Objects.equals(stringVar, chessMove.stringVar);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstPosition, lastPosition, stringVar);
+        return Objects.hash(firstPosition, lastPosition, promotion, stringVar);
+    }
+
+    @Override
+    public String toString() {
+        return "ChessMove{" +
+                "firstPosition=" + firstPosition +
+                ", lastPosition=" + lastPosition +
+                ", promotion=" + promotion +
+                ", stringVar='" + stringVar + '\'' +
+                '}';
     }
 }
