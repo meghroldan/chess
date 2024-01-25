@@ -82,6 +82,11 @@ public class ChessPiece {
             return king.pieceMovesAvailable(board, myPosition);
         }
 
+        PawnMovesInitial pawn = new PawnMovesInitial();
+        if(piece.getPieceType() == PieceType.PAWN){
+            return pawn.pieceMovesAvailable(board, myPosition);
+        }
+
         return validMoves2;
     }
 
