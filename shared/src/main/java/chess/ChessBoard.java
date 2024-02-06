@@ -16,6 +16,14 @@ public class ChessBoard {
         
     }
 
+    public ChessBoard (ChessBoard old){
+        for(Map.Entry<ChessPosition, ChessPiece> entry : old.getAllPieces().entrySet()) {
+            ChessPosition tempPos = new ChessPosition(entry.getKey().getRow(), entry.getKey().getColumn());
+            ChessPiece tempPie = new ChessPiece(entry.getValue().getTeamColor(), entry.getValue().getPieceType());
+            this.myPieces.put(tempPos, tempPie);
+        }
+    }
+
     /**
      * Adds a chess piece to the chessboard
      *

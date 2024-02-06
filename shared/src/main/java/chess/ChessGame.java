@@ -1,6 +1,8 @@
 package chess;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * For a class that can manage a chess game, making moves on a board
@@ -10,6 +12,12 @@ import java.util.Collection;
  */
 public class ChessGame {
 
+    private ChessBoard currBoard = new ChessBoard();
+    private ChessBoard tempBoard = new ChessBoard(currBoard);
+    private Map<ChessPosition, ChessPiece> pieces;  //this is only to pass through functions to test things - MUST EDIT BOARD
+    private Set<ChessMove> validMovesToMake;  //to check only
+    private ChessGame.TeamColor turn = TeamColor.WHITE;
+
     public ChessGame() {
 
     }
@@ -18,7 +26,7 @@ public class ChessGame {
      * @return Which team's turn it is
      */
     public TeamColor getTeamTurn() {
-        throw new RuntimeException("Not implemented");
+        return turn;
     }
 
     /**
@@ -27,7 +35,7 @@ public class ChessGame {
      * @param team the team whose turn it is
      */
     public void setTeamTurn(TeamColor team) {
-        throw new RuntimeException("Not implemented");
+        turn = team;
     }
 
     /**
@@ -46,7 +54,7 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        throw new RuntimeException("Not implemented");
+        return validMovesToMake;
     }
 
     /**
@@ -56,7 +64,23 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
-        throw new RuntimeException("Not implemented");
+        ChessPiece.PieceType tempType = pieces.get(move.getStartPosition()).getPieceType();
+        TeamColor tempColor = pieces.get(move.getStartPosition()).getTeamColor();
+
+        if(getTeamTurn() != tempColor){
+            InvalidMoveException exceptionN = new InvalidMoveException("Not your turn");
+            throw exceptionN;
+        }
+        if(currBoard.getPiece(move.getStartPosition()) == null){
+            InvalidMoveException exceptionNoPiece = new InvalidMoveException("No piece");
+        }
+
+        validMovesToMake = (Set<ChessMove>) validMoves(move.getStartPosition());
+        if(validMovesToMake.isEmpty() || !validMovesToMake.contains(move)){
+            throw new InvalidMoveException("not a move");
+        }
+
+
     }
 
     /**
