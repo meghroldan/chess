@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ public class ChessGame {
     private ChessGame.TeamColor turn = TeamColor.WHITE;
 
     public ChessGame() {
-
+        pieces = currBoard.getAllPieces();
     }
 
     /**
@@ -54,6 +55,29 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
+        Set<ChessMove> validMovesVerified = new HashSet<>();
+        validMovesToMake = (Set<ChessMove>) currBoard.getPiece(startPosition).pieceMoves(currBoard, startPosition);
+
+        tempBoard = new ChessBoard(currBoard); //to test with
+
+        for(ChessMove move : validMovesToMake){
+            tempBoard = new ChessBoard(currBoard);
+            ChessPiece type = tempBoard.getPiece(startPosition);
+            ChessPiece tempPiece = new ChessPiece(getTeamTurn(), tempBoard.getPiece(move.getStartPosition()).getPieceType());
+            pieces.remove(move.getStartPosition(), tempBoard.getPiece(move.getStartPosition()).getPieceType());
+            pieces.put(move.getEndPosition(), tempPiece);
+            tempBoard.setPieces(pieces);
+            if(!isInCheck(turn)){
+                validMovesVerified.add(move);
+            }
+
+            tempBoard.getAllPieces().remove(move.getEndPosition());
+            tempBoard.addPiece(move.getStartPosition(), type);
+        }
+
+        validMovesToMake = validMovesVerified;
+
+
         return validMovesToMake;
     }
 
@@ -64,6 +88,7 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
+        pieces = currBoard.getAllPieces();
         ChessPiece.PieceType tempType = pieces.get(move.getStartPosition()).getPieceType();
         TeamColor tempColor = pieces.get(move.getStartPosition()).getTeamColor();
 
@@ -116,6 +141,13 @@ public class ChessGame {
             }
         }
 
+        if(getTeamTurn() == TeamColor.BLACK){
+            setTeamTurn(TeamColor.WHITE);
+        }
+        else{
+            setTeamTurn(TeamColor.BLACK);
+        }
+
 
     }
 
@@ -126,7 +158,7 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        return false;
     }
 
     /**
@@ -136,7 +168,7 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        return false;
     }
 
     /**
@@ -147,7 +179,7 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        return false;
     }
 
     /**
