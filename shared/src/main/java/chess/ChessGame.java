@@ -14,8 +14,8 @@ public class ChessGame {
 
     private ChessBoard currBoard = new ChessBoard();
     private ChessBoard tempBoard = new ChessBoard(currBoard);
-    private Map<ChessPosition, ChessPiece> pieces;  //this is only to pass through functions to test things - MUST EDIT BOARD
-    private Set<ChessMove> validMovesToMake;
+    private Map<ChessPosition, ChessPiece> pieces = currBoard.getAllPieces();  //this is only to pass through functions to test things - MUST EDIT BOARD
+    private Set<ChessMove> validMovesToMake = new HashSet<>();
     private ChessGame.TeamColor turn = TeamColor.WHITE;
 
     public ChessGame() {
@@ -119,7 +119,7 @@ public class ChessGame {
                 currBoard.setPieces(pieces); //see if that worked
             }
             else{
-                ChessPiece tempPiece = new ChessPiece(getTeamTurn(), currBoard.getPiece(move.getStartPosition()).getPieceType());
+                ChessPiece tempPiece = new ChessPiece(getTeamTurn(), tempType);
                 ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
                 pieces.remove(move.getStartPosition());
                 pieces.remove(move.getEndPosition());
