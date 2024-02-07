@@ -74,6 +74,7 @@ public class ChessBoard {
         return Objects.hash(myPieces);
     }
 
+
     /**
      * Sets the board to the default starting board TODO:debug bc it's not working
      * (How the game of chess normally starts)
