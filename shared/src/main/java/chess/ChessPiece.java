@@ -32,6 +32,19 @@ public class ChessPiece {
         PAWN
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessPiece that=(ChessPiece) o;
+        return color == that.color && type == that.type && Objects.equals(validMoves2, that.validMoves2) && Objects.equals(myPieces, that.myPieces);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, type, validMoves2, myPieces);
+    }
+
     /**
      * @return Which team this chess piece belongs to
      */
@@ -88,19 +101,6 @@ public class ChessPiece {
         }
 
         return validMoves2;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ChessPiece that=(ChessPiece) o;
-        return color == that.color && type == that.type && Objects.equals(validMoves2, that.validMoves2) && Objects.equals(myPieces, that.myPieces);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(color, type, validMoves2, myPieces);
     }
 
     @Override

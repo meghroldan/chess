@@ -54,6 +54,26 @@ public class ChessBoard {
         return myPieces;
     }
 
+    @Override
+    public String toString() {
+        return "ChessBoard{" +
+                "myPieces=" + myPieces +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessBoard that=(ChessBoard) o;
+        return Objects.equals(myPieces, that.myPieces);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(myPieces);
+    }
+
     /**
      * Sets the board to the default starting board TODO:debug bc it's not working
      * (How the game of chess normally starts)
@@ -111,23 +131,4 @@ public class ChessBoard {
 
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ChessBoard that=(ChessBoard) o;
-        return Objects.equals(myPieces, that.myPieces);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(myPieces);
-    }
-
-    @Override
-    public String toString() {
-        return "ChessBoard{" +
-                "myPieces=" + myPieces +
-                '}';
-    }
 }

@@ -25,3 +25,11 @@ Dshared/src/test/java/passoffTests/chessTests/ChessPositionTests.java,b\6\b6da2
 Oshared/src/test/java/passoffTests/chessTests/chessPieceTests/PawnMoveTests.java,2\2\22d5d7ba9b083d375e88f3a668d54f397cf1c86c
 `
 0shared/src/main/java/chess/KingMovesInitial.java,d\2\d28f7c40fac85ce01750b26e46c4be03c0a7a39f
+p
+@shared/src/test/java/passoffTests/chessTests/ChessMoveTests.java,f\d\fd81fbf269c57a4155b6a5d43007bb4e29e137c0
+`
+0shared/src/main/java/chess/RookMovesInitial.java,4\0\406f0f7bfb4db1e5f94fe809ff8eec29b740fbef
+a
+1shared/src/main/java/chess/QueenMovesInitial.java,e\8\e8f584348636a3b6c27c967934f9c8d4e8e646f1
+d
+4shared/src/main/java/chess/InvalidMoveException.java,e\3\e39c3486fec5f2b87e64591840622613400adc99

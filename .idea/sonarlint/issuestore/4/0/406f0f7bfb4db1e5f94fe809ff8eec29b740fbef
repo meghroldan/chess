@@ -1,0 +1,20 @@
+
+s	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(¥“²–ûÿÿÿÿ
+n	java:S135,"YReduce the total number of break and continue statements in this loop to use at most one.(èĞœ
+z	java:S135<"YReduce the total number of break and continue statements in this loop to use at most one.(Æ³Ú øÿÿÿÿ8Ä½ÑÉÒ1
+z	java:S135M"YReduce the total number of break and continue statements in this loop to use at most one.(ëµî¨üÿÿÿÿ8ø¤ÒÉÒ1
+œ
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÆöĞáÿÿÿÿÿ
+k
+java:S1450
+"URemove the "pieces" field and declare it as a local variable in the relevant methods.(‚ÂğŞ
+m
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 36 to the 15 allowed.(³ÍæŒşÿÿÿÿ
+]
+java:S1854";Remove this useless assignment to local variable "tempRow".(åó•Ïûÿÿÿÿ8¬»‚ËÒ1
+X
+java:S1854";Remove this useless assignment to local variable "tempCol".(ë­8â¹ËÒ1
+I
+java:S1481",Remove this unused "tempCol" local variable.(ë­8ã¹ËÒ1
+N
+java:S1481",Remove this unused "tempRow" local variable.(åó•Ïûÿÿÿÿ8®»‚ËÒ1
