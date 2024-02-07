@@ -183,7 +183,7 @@ public class ChessGame {
      */
         //this gets piece partially trapped but not cannot elimate check
 
-        pieces = currBoard.getAllPieces();
+        pieces = tempBoard.getAllPieces();
         ChessPosition king = null;
         for(Map.Entry<ChessPosition, ChessPiece> en : pieces.entrySet()){
             if(en.getValue().getPieceType() == KING && en.getValue().getTeamColor() == teamColor){
@@ -247,7 +247,21 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
-        return false;
+        ChessBoard temp = new ChessBoard((ChessBoard) currBoard);
+        pieces = temp.getAllPieces();
+
+
+        Set<ChessMove> opponantMoves = new HashSet<>();
+        for(Map.Entry<ChessPosition, ChessPiece> en : pieces.entrySet()) {
+            if (en.getValue().getTeamColor() == teamColor) {
+                //this has to be valid moves only
+                opponantMoves=(Set<ChessMove>) validMoves(en.getKey());
+                if (!opponantMoves.isEmpty()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
