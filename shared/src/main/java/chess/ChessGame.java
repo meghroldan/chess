@@ -65,6 +65,9 @@ public class ChessGame {
 
 
         for(ChessMove moveToMake : validMovesToMake){
+            //if(tempBoard.getPiece(moveToMake.getEndPosition()).getTeamColor() == color){
+            //    continue;
+            //}
             tempBoard = new ChessBoard((ChessBoard) currBoard);
             ChessPiece type = tempBoard.getPiece(startPosition);
             tempBoard.getAllPieces().remove(startPosition);
@@ -105,6 +108,10 @@ public class ChessGame {
         if(currBoard.getPiece(move.getStartPosition()) == null){
             InvalidMoveException exceptionNoPiece = new InvalidMoveException("No piece");
         }
+
+        //if(currBoard.getPiece(move.getEndPosition()).getTeamColor() == tempColor){
+        //    InvalidMoveException exceptionNoPiece = new InvalidMoveException("Same Color");
+        //}
 
         validMovesToMake = (Set<ChessMove>) validMoves(move.getStartPosition());
         if(validMovesToMake.isEmpty() || !validMovesToMake.contains(move)){
@@ -205,7 +212,31 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
-        return false;
+        tempBoard = new ChessBoard((ChessBoard) currBoard);
+
+        pieces = tempBoard.getAllPieces();
+        for(Map.Entry<ChessPosition, ChessPiece> en : pieces.entrySet()) {
+            if (en.getValue().getTeamColor() == teamColor) {
+                Set<ChessMove> tempMoves = new HashSet<>();
+                Set<ChessMove> possibleMoves = new HashSet<>();
+                possibleMoves =(Set<ChessMove>) validMoves(en.getKey() );
+                for(ChessMove moveToMake : possibleMoves){
+                    ChessPiece type = tempBoard.getPiece(moveToMake.getStartPosition());
+                    tempBoard.getAllPieces().remove(moveToMake.getStartPosition());
+                    tempBoard.addPiece(moveToMake.getEndPosition(), type);
+                    if(!isInCheck(teamColor)){
+                        tempMoves.add(moveToMake);
+                    }
+                    tempBoard.getAllPieces().remove(moveToMake.getEndPosition());
+                    tempBoard.addPiece(moveToMake.getStartPosition(), type);
+                }
+                validMovesToMake = tempMoves;
+                if(!validMovesToMake.isEmpty()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
