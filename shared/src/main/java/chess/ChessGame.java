@@ -57,14 +57,12 @@ public class ChessGame {
         Set<ChessMove> tempMoves = new HashSet<>();
         TeamColor color = currBoard.getPiece(startPosition).getTeamColor();
         validMovesToMake =(Set<ChessMove>) currBoard.getAllPieces().get(startPosition).pieceMoves(currBoard, startPosition);
-        //make sure the moves are valid for this piece
+
         tempBoard = new ChessBoard((ChessBoard) currBoard);
 
 
         for(ChessMove moveToMake : validMovesToMake){
-            //if(tempBoard.getPiece(moveToMake.getEndPosition()).getTeamColor() == color){
-            //    continue;
-            //}
+
             tempBoard = new ChessBoard((ChessBoard) currBoard);
             ChessPiece type = tempBoard.getPiece(startPosition);
             tempBoard.getAllPieces().remove(startPosition);
@@ -81,9 +79,7 @@ public class ChessGame {
         validMovesToMake = tempMoves;
 
 
-        if(validMovesToMake == null){ //TODO see if we need to do this
-            return null;
-        }
+
         return validMovesToMake;
     }
 
@@ -106,10 +102,6 @@ public class ChessGame {
             InvalidMoveException exceptionNoPiece = new InvalidMoveException("No piece");
         }
 
-        //if(currBoard.getPiece(move.getEndPosition()).getTeamColor() == tempColor){
-        //    InvalidMoveException exceptionNoPiece = new InvalidMoveException("Same Color");
-        //}
-
         validMovesToMake = (Set<ChessMove>) validMoves(move.getStartPosition());
         if(validMovesToMake.isEmpty() || !validMovesToMake.contains(move)){
             throw new InvalidMoveException("not a move");
@@ -120,15 +112,15 @@ public class ChessGame {
             //check if pawn and if can be promoted
             if (move.getPromotionPiece() != null && currBoard.getAllPieces().get(move.getStartPosition()).getPieceType() == ChessPiece.PieceType.PAWN) {
                 ChessPiece tempPiece = new ChessPiece(getTeamTurn(), move.getPromotionPiece());
-                //ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
+                ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
                 pieces.remove(move.getStartPosition());
                 pieces.remove(move.getEndPosition());
                 pieces.put(move.getEndPosition(), tempPiece);
                 currBoard.setPieces(pieces); //see if that worked
             }
             else{
-                ChessPiece tempPiece = new ChessPiece(getTeamTurn(), tempType);
-                //ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
+                ChessPiece tempPiece = new ChessPiece(getTeamTurn(), currBoard.getPiece(move.getStartPosition()).getPieceType());
+                ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
                 pieces.remove(move.getStartPosition());
                 pieces.remove(move.getEndPosition());
                 pieces.put(move.getEndPosition(), tempPiece);
@@ -209,6 +201,7 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
+
         tempBoard = new ChessBoard((ChessBoard) currBoard);
 
         pieces = tempBoard.getAllPieces();
@@ -233,6 +226,7 @@ public class ChessGame {
                 }
             }
         }
+
         return true;
     }
 
@@ -244,6 +238,7 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
+
         ChessBoard temp = new ChessBoard((ChessBoard) currBoard);
         pieces = temp.getAllPieces();
 
