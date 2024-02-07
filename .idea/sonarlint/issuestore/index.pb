@@ -10,8 +10,6 @@ Oshared/src/test/java/passoffTests/chessTests/chessPieceTests/RookMoveTests.java
 
 Oshared/src/test/java/passoffTests/chessTests/chessPieceTests/KingMoveTests.java,4\f\4f5a51785069c3350ff6545d5f83e804a2493066
 b
-2shared/src/test/java/passoffTests/TestFactory.java,e\9\e9394cf4f23ef8e3e7f7d6cf9f7b3605ba345448
-b
 2shared/src/main/java/chess/BishopMovesInitial.java,5\0\5081a8064cbc322f948ca40f97058baab1899e02
 `
 0shared/src/main/java/chess/PawnMovesInitial.java,0\9\090256f372d3a89f294fcebe973f7a35e736505f
