@@ -24,6 +24,10 @@ public class ChessBoard {
         }
     }
 
+    public void setPieces(Map<ChessPosition,ChessPiece> newPieces){
+        myPieces = newPieces;
+    }
+
     /**
      * Adds a chess piece to the chessboard
      *

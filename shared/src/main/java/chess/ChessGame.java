@@ -15,7 +15,7 @@ public class ChessGame {
     private ChessBoard currBoard = new ChessBoard();
     private ChessBoard tempBoard = new ChessBoard(currBoard);
     private Map<ChessPosition, ChessPiece> pieces;  //this is only to pass through functions to test things - MUST EDIT BOARD
-    private Set<ChessMove> validMovesToMake;  //to check only
+    private Set<ChessMove> validMovesToMake;
     private ChessGame.TeamColor turn = TeamColor.WHITE;
 
     public ChessGame() {
@@ -78,6 +78,42 @@ public class ChessGame {
         validMovesToMake = (Set<ChessMove>) validMoves(move.getStartPosition());
         if(validMovesToMake.isEmpty() || !validMovesToMake.contains(move)){
             throw new InvalidMoveException("not a move");
+        }
+
+        if(currBoard.getAllPieces().get(move.getEndPosition()) != null && currBoard.getAllPieces().get(move.getEndPosition()).getTeamColor() != getTeamTurn()){
+
+            //check if pawn and if can be promoted
+            if (move.getPromotionPiece() != null && currBoard.getAllPieces().get(move.getStartPosition()).getPieceType() == ChessPiece.PieceType.PAWN) {
+                ChessPiece tempPiece = new ChessPiece(getTeamTurn(), move.getPromotionPiece());
+                ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
+                pieces.remove(move.getStartPosition(), currBoard.getPiece(move.getStartPosition()).getPieceType());
+                pieces.remove(move.getEndPosition(), pieceToRemove);
+                pieces.put(move.getEndPosition(), tempPiece);
+                currBoard.setPieces(pieces); //see if that worked
+            }
+            else{
+                ChessPiece tempPiece = new ChessPiece(getTeamTurn(), currBoard.getPiece(move.getStartPosition()).getPieceType());
+                ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
+                pieces.remove(move.getStartPosition(), currBoard.getPiece(move.getStartPosition()).getPieceType());
+                pieces.remove(move.getEndPosition(), pieceToRemove);
+                pieces.put(move.getEndPosition(), tempPiece);
+                currBoard.setPieces(pieces);
+            }
+
+        }
+        if(currBoard.getPiece(move.getEndPosition()) != null){
+            if(move.getPromotionPiece() != null){
+                ChessPiece tempPiece = new ChessPiece(getTeamTurn(), move.getPromotionPiece());
+                pieces.remove(move.getStartPosition(), currBoard.getPiece(move.getStartPosition()).getPieceType());
+                pieces.put(move.getEndPosition(), tempPiece);
+                currBoard.setPieces(pieces);
+            }
+            else{
+                ChessPiece tempPiece = new ChessPiece(getTeamTurn(), currBoard.getPiece(move.getStartPosition()).getPieceType());
+                pieces.remove(move.getStartPosition(), currBoard.getPiece(move.getStartPosition()).getPieceType());
+                pieces.put(move.getEndPosition(), tempPiece);
+                currBoard.setPieces(pieces);
+            }
         }
 
 
