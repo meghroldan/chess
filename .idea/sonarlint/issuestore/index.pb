@@ -7,8 +7,6 @@ Qshared/src/test/java/passoffTests/chessTests/chessPieceTests/BishopMoveTests.ja
 Pshared/src/test/java/passoffTests/chessTests/chessPieceTests/QueenMoveTests.java,b\7\b7a81e11a5af1e18a99fa5a428d1e98904fe5e1f
 
 Oshared/src/test/java/passoffTests/chessTests/chessPieceTests/RookMoveTests.java,8\8\885e6054d5b92ec42f1b68812c44b03c5665418b
-a
-1shared/src/main/java/chess/QueenMovesInitial.java,e\8\e8f584348636a3b6c27c967934f9c8d4e8e646f1
 
 Oshared/src/test/java/passoffTests/chessTests/chessPieceTests/KingMoveTests.java,4\f\4f5a51785069c3350ff6545d5f83e804a2493066
 b

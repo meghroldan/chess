@@ -110,7 +110,7 @@ public class ChessGame {
             //check if pawn and if can be promoted
             if (move.getPromotionPiece() != null && currBoard.getAllPieces().get(move.getStartPosition()).getPieceType() == ChessPiece.PieceType.PAWN) {
                 ChessPiece tempPiece = new ChessPiece(getTeamTurn(), move.getPromotionPiece());
-                ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
+                //ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
                 pieces.remove(move.getStartPosition());
                 pieces.remove(move.getEndPosition());
                 pieces.put(move.getEndPosition(), tempPiece);
@@ -118,7 +118,7 @@ public class ChessGame {
             }
             else{
                 ChessPiece tempPiece = new ChessPiece(getTeamTurn(), tempType);
-                ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
+                //ChessPiece.PieceType pieceToRemove = currBoard.getPiece(move.getEndPosition()).getPieceType();
                 pieces.remove(move.getStartPosition());
                 pieces.remove(move.getEndPosition());
                 pieces.put(move.getEndPosition(), tempPiece);
