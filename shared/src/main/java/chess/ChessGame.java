@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static chess.ChessPiece.PieceType.KING;
+
 /**
  * For a class that can manage a chess game, making moves on a board
  * <p>
@@ -55,29 +57,33 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        Set<ChessMove> validMovesVerified = new HashSet<>();
-        validMovesToMake = (Set<ChessMove>) currBoard.getPiece(startPosition).pieceMoves(currBoard, startPosition);
+        Set<ChessMove> tempMoves = new HashSet<>();
+        TeamColor color = currBoard.getPiece(startPosition).getTeamColor();
+        validMovesToMake =(Set<ChessMove>) currBoard.getAllPieces().get(startPosition).pieceMoves(currBoard, startPosition);
+        //make sure the moves are valid for this piece
+        tempBoard = new ChessBoard((ChessBoard) currBoard);
 
-        tempBoard = new ChessBoard(currBoard); //to test with
 
-        for(ChessMove move : validMovesToMake){
-            tempBoard = new ChessBoard(currBoard);
+        for(ChessMove moveToMake : validMovesToMake){
+            tempBoard = new ChessBoard((ChessBoard) currBoard);
             ChessPiece type = tempBoard.getPiece(startPosition);
-            ChessPiece tempPiece = new ChessPiece(getTeamTurn(), tempBoard.getPiece(move.getStartPosition()).getPieceType());
-            pieces.remove(move.getStartPosition());
-            pieces.put(move.getEndPosition(), tempPiece);
-            tempBoard.setPieces(pieces);
-            if(!isInCheck(turn)){
-                validMovesVerified.add(move);
+            tempBoard.getAllPieces().remove(startPosition);
+            tempBoard.addPiece(moveToMake.getEndPosition(), type);
+            if(!isInCheck(color)){
+                tempMoves.add(moveToMake);
             }
-
-            tempBoard.getAllPieces().remove(move.getEndPosition());
-            tempBoard.addPiece(move.getStartPosition(), type);
+            tempBoard.getAllPieces().remove(moveToMake.getEndPosition());
+            tempBoard.addPiece(moveToMake.getStartPosition(), type);
         }
 
-        validMovesToMake = validMovesVerified;
 
 
+        validMovesToMake = tempMoves;
+
+
+        if(validMovesToMake == null){ //TODO see if we need to do this
+            return null;
+        }
         return validMovesToMake;
     }
 
@@ -158,6 +164,37 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
+
+        if(tempBoard.getAllPieces().size() == 0){
+            tempBoard = new ChessBoard((ChessBoard) currBoard);
+        }
+    /*
+    if(tempBoard.getMyPieces().size() != currBoard.getMyPieces().size()){
+      tempBoard = new IChessBoard((IChessBoard) currBoard);
+    }
+
+     */
+        //this gets piece partially trapped but not cannot elimate check
+
+        pieces = currBoard.getAllPieces();
+        ChessPosition king = null;
+        for(Map.Entry<ChessPosition, ChessPiece> en : pieces.entrySet()){
+            if(en.getValue().getPieceType() == KING && en.getValue().getTeamColor() == teamColor){
+                king = en.getKey();
+            }
+        }
+
+        Set<ChessMove> opponantMoves = new HashSet<>();
+        for(Map.Entry<ChessPosition, ChessPiece> en : pieces.entrySet()){
+            if(en.getValue().getTeamColor() != teamColor){
+                opponantMoves =(Set<ChessMove>) tempBoard.getPiece(en.getKey()).pieceMoves(tempBoard, en.getKey());
+                for(ChessMove move : opponantMoves){
+                    if(move.getEndPosition().equals(king)){
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 

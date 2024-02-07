@@ -107,9 +107,6 @@ public class ChessPiece {
     public String toString() {
         return "ChessPiece{" +
                 "color=" + color +
-                ", type=" + type +
-                ", validMoves2=" + validMoves2 +
-                ", myPieces=" + myPieces +
-                '}';
+                ", type=" + type + '}';
     }
 }
