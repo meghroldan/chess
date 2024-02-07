@@ -1,0 +1,19 @@
+
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(†¤νώÿÿÿÿ
+k
+java:S1450
+"URemove the "pieces" field and declare it as a local variable in the relevant methods.(‚Βπή
+m
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(³Νζώÿÿÿÿ
+V
+java:S1854";Remove this useless assignment to local variable "tempRow".(εσ•Οϋÿÿÿÿ
+Q
+java:S1854";Remove this useless assignment to local variable "tempCol".(λ­
+B
+java:S1481",Remove this unused "tempCol" local variable.(λ­
+G
+java:S1481",Remove this unused "tempRow" local variable.(εσ•Οϋÿÿÿÿ
+@
+java:S1068
+"*Remove this unused "pieces" private field.(‚Βπή
