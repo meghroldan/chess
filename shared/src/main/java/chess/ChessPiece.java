@@ -95,8 +95,8 @@ public class ChessPiece {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChessPiece that=(ChessPiece) o;
-        return color == that.color && type == that.type && Objects.equals(validMoves2, that.validMoves2) && Objects.equals(myPieces, that.myPieces);
-    }
+        return color == that.color && type == that.type;
+}
 
     @Override
     public int hashCode() {
