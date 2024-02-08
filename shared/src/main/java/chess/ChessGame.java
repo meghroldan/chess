@@ -62,6 +62,13 @@ public class ChessGame {
 
 
         for(ChessMove moveToMake : validMovesToMake){
+            ChessPiece endPiece = null;
+            if(currBoard.getPiece(moveToMake.getEndPosition()) != null){
+                ChessPiece.PieceType endType = currBoard.getPiece(moveToMake.getEndPosition()).getPieceType();
+                TeamColor endColor = currBoard.getPiece(moveToMake.getEndPosition()).getTeamColor();
+                endPiece = new ChessPiece(endColor, endType);
+
+            }
 
             //ChessBoard tempBoard = new ChessBoard((ChessBoard) currBoard);
             ChessPiece type = currBoard.getPiece(startPosition);
@@ -70,7 +77,7 @@ public class ChessGame {
             if(!isInCheck(color)){
                 tempMoves.add(moveToMake);
             }
-            currBoard.addPiece(moveToMake.getEndPosition(), null);
+            currBoard.addPiece(moveToMake.getEndPosition(), endPiece); //this is the problem line
             currBoard.addPiece(moveToMake.getStartPosition(), type);
         }
 
