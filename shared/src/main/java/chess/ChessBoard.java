@@ -49,7 +49,7 @@ public class ChessBoard {
     @Override
     public String toString() {
         return "ChessBoard{" +
-                "myPieces=" + Arrays.toString(myPieces) +
+                "myPieces=" + Arrays.deepToString(myPieces) +
                 '}';
     }
 
@@ -58,12 +58,12 @@ public class ChessBoard {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChessBoard that=(ChessBoard) o;
-        return Arrays.equals(myPieces, that.myPieces);
+        return Arrays.deepEquals(myPieces, that.myPieces);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(myPieces);
+        return Arrays.deepHashCode(myPieces);
     }
 
     /**
