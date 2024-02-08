@@ -7,14 +7,14 @@ import java.util.Set;
 
 public class BishopMovesInitial implements PieceMovements{
 
-  private Map<ChessPosition, ChessPiece> pieces;
+  //private Map<ChessPosition, ChessPiece> pieces;
   private Set<ChessMove> validMoves2 = new HashSet<>();
   public BishopMovesInitial(){
   }
 
   @Override
   public Collection<ChessMove> pieceMovesAvailable(ChessBoard board, ChessPosition myPosition) {
-    pieces = board.getAllPieces();
+    //pieces = board.getAllPieces();
     ChessGame.TeamColor currColor = board.getPiece(myPosition).getTeamColor();
     int col = myPosition.getColumn();
     int row = myPosition.getRow();

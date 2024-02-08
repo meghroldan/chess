@@ -13,7 +13,7 @@ public class ChessMove {
     private ChessPosition firstPosition;
     private ChessPosition lastPosition;
     private ChessPiece.PieceType promotion;
-    private String stringVar;
+    //private String stringVar;
 
     public ChessMove(ChessPosition startPosition, ChessPosition endPosition,
                      ChessPiece.PieceType promotionPiece) {
@@ -51,12 +51,12 @@ public class ChessMove {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChessMove chessMove=(ChessMove) o;
-        return Objects.equals(firstPosition, chessMove.firstPosition) && Objects.equals(lastPosition, chessMove.lastPosition) && promotion == chessMove.promotion && Objects.equals(stringVar, chessMove.stringVar);
+        return Objects.equals(firstPosition, chessMove.firstPosition) && Objects.equals(lastPosition, chessMove.lastPosition) && promotion == chessMove.promotion;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstPosition, lastPosition, promotion, stringVar);
+        return Objects.hash(firstPosition, lastPosition, promotion);
     }
 
     @Override
@@ -65,7 +65,6 @@ public class ChessMove {
                 "firstPosition=" + firstPosition +
                 ", lastPosition=" + lastPosition +
                 ", promotion=" + promotion +
-                ", stringVar='" + stringVar + '\'' +
                 '}';
     }
 }

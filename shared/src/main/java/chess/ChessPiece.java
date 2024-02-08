@@ -13,7 +13,7 @@ public class ChessPiece {
     private ChessGame.TeamColor color;
     private ChessPiece.PieceType type;
     private Set<ChessMove> validMoves2 = new HashSet<>();
-    private Map<ChessPosition,ChessPiece> myPieces = new HashMap<ChessPosition,ChessPiece>();
+    //private Map<ChessPosition,ChessPiece> myPieces = new HashMap<ChessPosition,ChessPiece>();
 
     public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
         color = pieceColor;
@@ -54,7 +54,7 @@ public class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        myPieces = board.getAllPieces();
+        //myPieces = board.getAllPieces();
         ChessPiece piece = board.getPiece(myPosition);
 
         BishopMovesInitial bishop = new BishopMovesInitial();
@@ -100,7 +100,7 @@ public class ChessPiece {
 
     @Override
     public int hashCode() {
-        return Objects.hash(color, type, validMoves2, myPieces);
+        return Objects.hash(color, type, validMoves2);
     }
 
     @Override
