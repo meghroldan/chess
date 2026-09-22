@@ -1,5 +1,7 @@
 package chess;
 
+
+
 /**
  * A chessboard that can hold and rearrange chess pieces.
  * <p>
@@ -8,8 +10,10 @@ package chess;
  */
 public class ChessBoard {
 
+    private ChessPiece[][] myPieces;
+
     public ChessBoard() {
-        
+        myPieces = new ChessPiece[8][8];
     }
 
     /**
@@ -30,9 +34,8 @@ public class ChessBoard {
      * position
      */
     public ChessPiece getPiece(ChessPosition position) {
-        throw new RuntimeException("Not implemented");
+        return myPieces[position.getRow()-1][position.getColumn()-1];
     }
-
     /**
      * Sets the board to the default starting board
      * (How the game of chess normally starts)
