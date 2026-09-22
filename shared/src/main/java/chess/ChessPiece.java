@@ -2,6 +2,7 @@ package chess;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -55,7 +56,59 @@ public class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
+
         ChessPiece tempPiece = board.getPiece(myPosition);
-        throw new RuntimeException("Not implemented");
+
+        QueenMove queen = new QueenMove();
+        if(tempPiece.getPieceType() == PieceType.QUEEN){
+            return queen.pieceMoves(board, myPosition);
+        }
+
+        BishopMove bishop = new BishopMove();
+        if(tempPiece.getPieceType() == PieceType.BISHOP){
+            return bishop.pieceMoves(board, myPosition);
+        }
+
+        RookMove rook = new RookMove();
+        if(tempPiece.getPieceType() == PieceType.ROOK){
+            return rook.pieceMoves(board, myPosition);
+        }
+
+        KnightMove knight = new KnightMove();
+        if(tempPiece.getPieceType() == PieceType.KNIGHT){
+            return knight.pieceMoves(board, myPosition);
+        }
+
+        KingMove king = new KingMove();
+        if(tempPiece.getPieceType() == PieceType.KING){
+            return king.pieceMoves(board, myPosition);
+        }
+
+        PawnMove pawn = new PawnMove();
+        if(tempPiece.getPieceType() == PieceType.PAWN){
+            return pawn.pieceMoves(board, myPosition);
+        }
+
+        return validMoves;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessPiece that=(ChessPiece) o;
+        return color == that.color && typeFill == that.typeFill;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, typeFill, validMoves);
+    }
+
+    @Override
+    public String toString() {
+        return "ChessPiece{" +
+                "color=" + color +
+                ", type=" + typeFill + "}";
     }
 }

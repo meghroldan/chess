@@ -35,8 +35,24 @@ public class ChessPosition {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessPosition that=(ChessPosition) o;
+        return rowFill == that.rowFill && colFill == that.colFill;
+    }
+
+    @Override
     public int hashCode() {
 
         return Objects.hash(rowFill, colFill);
+    }
+
+    @Override
+    public String toString() {
+        return "ChessPosition{" +
+                "row1=" + rowFill +
+                ", col1=" + colFill+
+                '}';
     }
 }
