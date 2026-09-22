@@ -7,6 +7,7 @@ public class BishopMove implements PieceMovement{
 
     private Set<ChessMove> moves;
 
+    @Override
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition position){
         return moves;
     }
