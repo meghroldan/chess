@@ -1,6 +1,8 @@
 package chess;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Represents a single chess piece
@@ -10,7 +12,13 @@ import java.util.Collection;
  */
 public class ChessPiece {
 
+    private ChessGame.TeamColor color;
+    private ChessPiece.PieceType typeFill;
+    private Set<ChessMove> validMoves = new HashSet<>();
+
     public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
+        color = pieceColor;
+        typeFill = type;
     }
 
     /**
@@ -29,14 +37,14 @@ public class ChessPiece {
      * @return Which team this chess piece belongs to
      */
     public ChessGame.TeamColor getTeamColor() {
-        throw new RuntimeException("Not implemented");
+        return color;
     }
 
     /**
      * @return which type of chess piece this piece is
      */
     public PieceType getPieceType() {
-        throw new RuntimeException("Not implemented");
+        return typeFill;
     }
 
     /**
@@ -47,6 +55,7 @@ public class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
+        ChessPiece tempPiece = board.getPiece(myPosition);
         throw new RuntimeException("Not implemented");
     }
 }
