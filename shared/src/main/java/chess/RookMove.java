@@ -16,9 +16,6 @@ public class RookMove implements PieceMovement{
         int col = position.getColumn();
         int row = position.getRow();
 
-        int tempCol = position.getColumn();
-        int tempRow = position.getRow();
-
         ChessPosition tempPosition;
         ChessMove tempMove;
 
@@ -86,6 +83,11 @@ public class RookMove implements PieceMovement{
                 moves.add(tempMove);
             }
 
+        }
+
+        if(moves == null){
+            //System.out.println("No moves available");
+            return null;
         }
 
         return moves;

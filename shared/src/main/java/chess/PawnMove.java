@@ -16,9 +16,6 @@ public class PawnMove implements PieceMovement{
         int col = position.getColumn();
         int row = position.getRow();
 
-        int tempCol = position.getColumn();
-        int tempRow = position.getRow();
-
         ChessPosition tempPosition;
         ChessMove tempMove;
 
@@ -151,6 +148,7 @@ public class PawnMove implements PieceMovement{
                     moves.add(tempMove);
                 }
                 tempPosition=new ChessPosition(row - 1, col - 1);
+
                 if (board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor) {
                     tempMove=new ChessMove(position, tempPosition, ChessPiece.PieceType.KNIGHT);
                     moves.add(tempMove);
@@ -162,6 +160,11 @@ public class PawnMove implements PieceMovement{
                     moves.add(tempMove);
                 }
             }
+        }
+
+        if(moves == null){
+            //System.out.println("No moves available");
+            return null;
         }
 
 
