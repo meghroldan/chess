@@ -14,7 +14,6 @@ public class ChessGame {
 
     private ChessBoard currBoard = new ChessBoard();
 
-    //private Map<ChessPosition, ChessPiece> pieces = currBoard.getAllPieces();  //this is only to pass through functions to test things - MUST EDIT BOARD
     private Set<ChessMove> validMovesToMake = new HashSet<>();
     private ChessGame.TeamColor turn = TeamColor.WHITE;
 
