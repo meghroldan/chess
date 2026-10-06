@@ -61,19 +61,19 @@ public class ChessGame {
         for(ChessMove moveToMake : validMoves){
             ChessPiece endPiece = currBoard.getPiece(moveToMake.getEndPosition());
 
-            //ChessBoard tempBoard = new ChessBoard((ChessBoard) currBoard);
-            ChessPiece type = currBoard.getPiece(startPosition);
-            currBoard.addPiece(startPosition, null);
-            currBoard.addPiece(moveToMake.getEndPosition(), type);
+            ChessBoard tempBoard = currBoard;
+            ChessPiece type = tempBoard.getPiece(startPosition);
+            tempBoard.addPiece(startPosition, null);
+            tempBoard.addPiece(moveToMake.getEndPosition(), type);
             if(!isInCheck(color)){
                 tempMoves.add(moveToMake);
             }
             if (endPiece == null) {
-                currBoard.removePiece(moveToMake.getEndPosition());
+                tempBoard.removePiece(moveToMake.getEndPosition());
             } else {
-                currBoard.addPiece(moveToMake.getEndPosition(), endPiece);
+                tempBoard.addPiece(moveToMake.getEndPosition(), endPiece);
             }
-            currBoard.addPiece(moveToMake.getStartPosition(), type);
+            tempBoard.addPiece(moveToMake.getStartPosition(), type);
         }
 
 
@@ -92,6 +92,10 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
+        if(currBoard.getPiece(move.getStartPosition()) == null){
+            InvalidMoveException exceptionN = new InvalidMoveException("not valid piece");
+            throw exceptionN;
+        }
         if((currBoard.getPiece((move.getStartPosition())).getPieceType()) == null){
             InvalidMoveException exceptionN = new InvalidMoveException("not valid piece");
             throw exceptionN;
@@ -119,7 +123,7 @@ public class ChessGame {
             currBoard.removePiece(move.getEndPosition());
         }
         //check for promotion
-        if(currBoard.getPiece(move.getStartPosition()).getPieceType() == PAWN){
+        if(currBoard.getPiece(move.getStartPosition()).getPieceType() == PAWN && move.getPromotionPiece() != null){
             tempType = move.getPromotionPiece();
             ChessPiece tempPiece = new ChessPiece(turn, tempType);
             currBoard.addPiece(move.getEndPosition(), tempPiece);
