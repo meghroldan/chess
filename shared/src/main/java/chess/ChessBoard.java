@@ -98,6 +98,21 @@ public class ChessBoard{
 
     }
 
+    public ChessBoard(ChessBoard other) {
+
+        this.myPieces = new ChessPiece[8][8];
+        for (int row = 1; row < 9; row++) {
+            for (int col = 1; col < 9; col++) {
+
+                ChessPosition pos = new ChessPosition(row, col);
+                ChessPiece piece = other.getPiece(pos);
+                if (piece != null) {
+                    this.addPiece(pos, new ChessPiece(piece.getTeamColor(), piece.getPieceType()));
+                }
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "ChessBoard{" +

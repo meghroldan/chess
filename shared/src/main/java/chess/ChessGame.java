@@ -54,35 +54,65 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
+
+
         Set<ChessMove> tempMoves = new HashSet<>();
         TeamColor color = currBoard.getPiece(startPosition).getTeamColor();
-        validMoves =(Set<ChessMove>) currBoard.getPiece(startPosition).pieceMoves(currBoard, startPosition);
+        validMoves = (Set<ChessMove>) currBoard.getPiece(startPosition).pieceMoves(currBoard, startPosition);
 
-        for(ChessMove moveToMake : validMoves){
-            ChessPiece endPiece = currBoard.getPiece(moveToMake.getEndPosition());
+        ChessPiece piece = currBoard.getPiece(startPosition);
+        Set<ChessMove> moves = new HashSet<>();
 
-            ChessBoard tempBoard = currBoard;
-            ChessPiece type = tempBoard.getPiece(startPosition);
-            tempBoard.addPiece(startPosition, null);
-            tempBoard.addPiece(moveToMake.getEndPosition(), type);
-            if(!isInCheck(color)){
-                tempMoves.add(moveToMake);
+        Collection<ChessMove> potentialTempMoves = piece.pieceMoves(currBoard, startPosition);
+
+        for (ChessMove move : potentialTempMoves) {
+            ChessBoard copy = new ChessBoard(currBoard); //should I copy this before so it doesn't deep copy ever time - takes much time to do
+
+            ChessPiece moved = copy.getPiece(startPosition);
+            //ChessPiece captured = copy.getPiece(move.getEndPosition());
+            copy.addPiece(move.getEndPosition(), moved);
+            copy.addPiece(startPosition, null);
+
+
+            if (!isInCheckOnBoard(copy, color)) {
+                moves.add(move);
             }
-            if (endPiece == null) {
-                tempBoard.removePiece(moveToMake.getEndPosition());
-            } else {
-                tempBoard.addPiece(moveToMake.getEndPosition(), endPiece);
-            }
-            tempBoard.addPiece(moveToMake.getStartPosition(), type);
         }
 
+        return moves;
+    }
 
+    private boolean isInCheckOnBoard(ChessBoard board, TeamColor teamColor) {
+        ChessPosition king = null;
+        for(int i = 1; i < 9; i++){
+            for(int j = 1; j < 9; j++){
+                ChessPosition startPos = new ChessPosition(i, j);
+                ChessPiece piece = board.getPiece(startPos);
+                if (piece != null && piece.getPieceType() == KING && piece.getTeamColor() == teamColor) {
+                    king = startPos;
+                    break;
+                }
+            }
+        }
 
-    validMoves = tempMoves;
+        for (int i = 1; i < 9; i++) {
+            for (int j = 1; j < 9; j++) {
+                ChessPosition positionTemp = new ChessPosition(i, j);
+                ChessPiece piece = board.getPiece(positionTemp);
 
+                if (piece != null && piece.getTeamColor() != teamColor) {
+                    Collection<ChessMove> moves = piece.pieceMoves(board, positionTemp);
 
+                    for (ChessMove move : moves) {
+                        if (move.getEndPosition().equals(king)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
 
-        return validMoves;
+        return false;
     }
 
     /**
@@ -110,8 +140,6 @@ public class ChessGame {
         if(currBoard.getPiece(move.getStartPosition()) == null){
             InvalidMoveException exceptionN = new InvalidMoveException("not valid piece");
         }
-
-        validMoves = (Set<ChessMove>) validMoves(move.getStartPosition());
 
         validMoves = (Set<ChessMove>) validMoves(move.getStartPosition());
         if(validMoves.isEmpty() || !validMoves.contains(move)){
@@ -212,6 +240,11 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
+
+        if (isInCheck(teamColor)) {
+            return false;
+        }
+
         for(int i = 1; i < 9; i++) {
             for (int j=1; j < 9; j++) {
                 ChessPosition startPos=new ChessPosition(i, j);
