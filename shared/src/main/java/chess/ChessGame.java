@@ -105,6 +105,11 @@ public class ChessGame {
         }
 
         validMoves = (Set<ChessMove>) validMoves(move.getStartPosition());
+
+        validMoves = (Set<ChessMove>) validMoves(move.getStartPosition());
+        if(validMoves.isEmpty() || !validMoves.contains(move)){
+            throw new InvalidMoveException("not a move");
+        }
     }
 
     /**
@@ -153,6 +158,6 @@ public class ChessGame {
      * @return the chessboard
      */
     public ChessBoard getBoard() {
-        throw new RuntimeException("Not implemented");
+        return currBoard;
     }
 }
