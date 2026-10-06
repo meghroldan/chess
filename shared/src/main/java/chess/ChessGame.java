@@ -3,6 +3,7 @@ package chess;
 import java.util.*;
 
 import static chess.ChessPiece.PieceType.KING;
+import static chess.ChessPiece.PieceType.PAWN;
 
 /**
  * A class that can manage a chess game, making moves on a board
@@ -58,13 +59,7 @@ public class ChessGame {
         validMoves =(Set<ChessMove>) currBoard.getPiece(startPosition).pieceMoves(currBoard, startPosition);
 
         for(ChessMove moveToMake : validMoves){
-            ChessPiece endPiece = null;
-            if(currBoard.getPiece(moveToMake.getEndPosition()) != null){
-                ChessPiece.PieceType endType = currBoard.getPiece(moveToMake.getEndPosition()).getPieceType();
-                TeamColor endColor = currBoard.getPiece(moveToMake.getEndPosition()).getTeamColor();
-                endPiece = new ChessPiece(endColor, endType);
-
-            }
+            ChessPiece endPiece = currBoard.getPiece(moveToMake.getEndPosition());
 
             //ChessBoard tempBoard = new ChessBoard((ChessBoard) currBoard);
             ChessPiece type = currBoard.getPiece(startPosition);
@@ -73,7 +68,11 @@ public class ChessGame {
             if(!isInCheck(color)){
                 tempMoves.add(moveToMake);
             }
-            currBoard.addPiece(moveToMake.getEndPosition(), endPiece); //this is the problem line
+            if (endPiece == null) {
+                currBoard.removePiece(moveToMake.getEndPosition());
+            } else {
+                currBoard.addPiece(moveToMake.getEndPosition(), endPiece);
+            }
             currBoard.addPiece(moveToMake.getStartPosition(), type);
         }
 
@@ -94,7 +93,7 @@ public class ChessGame {
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
         if((currBoard.getPiece((move.getStartPosition())).getPieceType()) == null){
-            InvalidMoveException exceptionN = new InvalidMoveException("Not valid piece");
+            InvalidMoveException exceptionN = new InvalidMoveException("not valid piece");
             throw exceptionN;
         }
         ChessPiece.PieceType tempType = currBoard.getPiece(move.getStartPosition()).getPieceType();
@@ -105,7 +104,7 @@ public class ChessGame {
             throw exceptionN;
         }
         if(currBoard.getPiece(move.getStartPosition()) == null){
-            InvalidMoveException exceptionNoPiece = new InvalidMoveException("No piece");
+            InvalidMoveException exceptionN = new InvalidMoveException("not valid piece");
         }
 
         validMoves = (Set<ChessMove>) validMoves(move.getStartPosition());
@@ -119,7 +118,15 @@ public class ChessGame {
         if(currBoard.getPiece(move.getEndPosition()) != null){
             currBoard.removePiece(move.getEndPosition());
         }
-        currBoard.addPiece(move.getEndPosition(), currBoard.getPiece(move.getStartPosition()));
+        //check for promotion
+        if(currBoard.getPiece(move.getStartPosition()).getPieceType() == PAWN){
+            tempType = move.getPromotionPiece();
+            ChessPiece tempPiece = new ChessPiece(turn, tempType);
+            currBoard.addPiece(move.getEndPosition(), tempPiece);
+        }
+        else{
+            currBoard.addPiece(move.getEndPosition(), currBoard.getPiece(move.getStartPosition()));
+        }
         //move old piece
         currBoard.removePiece(move.getStartPosition());
         //change color
