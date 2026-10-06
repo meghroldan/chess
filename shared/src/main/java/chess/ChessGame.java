@@ -18,7 +18,7 @@ public class ChessGame {
     private ChessGame.TeamColor turn = TeamColor.WHITE;
 
     public ChessGame() {
-
+        currBoard.resetBoard();
     }
 
     /**
@@ -215,14 +215,13 @@ public class ChessGame {
         return currBoard;
     }
 
-    /*
     @Override
     public int hashCode() {
         return Objects.hash(currBoard, validMoves, turn);
     }
-     */
 
-    /*
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -230,6 +229,6 @@ public class ChessGame {
         ChessGame that=(ChessGame) o;
         return (Objects.equals(currBoard, that.currBoard) && Objects.equals(validMoves, that.validMoves) && Objects.equals(turn, that.turn));
     }
-     */
+
 
 }
