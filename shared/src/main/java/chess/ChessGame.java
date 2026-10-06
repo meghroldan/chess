@@ -14,7 +14,7 @@ public class ChessGame {
 
     private ChessBoard currBoard = new ChessBoard();
 
-    private Set<ChessMove> validMovesToMake = new HashSet<>();
+    private Set<ChessMove> validMoves = new HashSet<>();
     private ChessGame.TeamColor turn = TeamColor.WHITE;
 
     public ChessGame() {
@@ -53,7 +53,37 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        throw new RuntimeException("Not implemented");
+        Set<ChessMove> tempMoves = new HashSet<>();
+        TeamColor color = currBoard.getPiece(startPosition).getTeamColor();
+        validMoves =(Set<ChessMove>) currBoard.getPiece(startPosition).pieceMoves(currBoard, startPosition);
+
+        for(ChessMove moveToMake : validMoves){
+            ChessPiece endPiece = null;
+            if(currBoard.getPiece(moveToMake.getEndPosition()) != null){
+                ChessPiece.PieceType endType = currBoard.getPiece(moveToMake.getEndPosition()).getPieceType();
+                TeamColor endColor = currBoard.getPiece(moveToMake.getEndPosition()).getTeamColor();
+                endPiece = new ChessPiece(endColor, endType);
+
+            }
+
+            //ChessBoard tempBoard = new ChessBoard((ChessBoard) currBoard);
+            ChessPiece type = currBoard.getPiece(startPosition);
+            currBoard.addPiece(startPosition, null);
+            currBoard.addPiece(moveToMake.getEndPosition(), type);
+            if(!isInCheck(color)){
+                tempMoves.add(moveToMake);
+            }
+            currBoard.addPiece(moveToMake.getEndPosition(), endPiece); //this is the problem line
+            currBoard.addPiece(moveToMake.getStartPosition(), type);
+        }
+
+
+
+    validMoves = tempMoves;
+
+
+
+        return validMoves;
     }
 
     /**
