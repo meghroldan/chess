@@ -154,7 +154,8 @@ public class ChessGame {
         for(int i = 1; i < 9; i++){
             for(int j = 1; j < 9; j++){
                 ChessPosition startPos = new ChessPosition(i, j);
-                if(currBoard.getPiece(startPos) != null && currBoard.getPiece(startPos).getPieceType() == KING && currBoard.getPiece(startPos).getTeamColor() == teamColor){
+                ChessPiece piece = currBoard.getPiece(startPos);
+                if (piece != null && piece.getPieceType() == KING && piece.getTeamColor() == teamColor) {
                     king = startPos;
                     break;
                 }

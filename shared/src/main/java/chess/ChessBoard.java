@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Note: You can add to this class, but you may not alter
  * signature of the existing methods.
  */
-public class ChessBoard {
+public class ChessBoard{
 
     private ChessPiece[][] myPieces;
 
