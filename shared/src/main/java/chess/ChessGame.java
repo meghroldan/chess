@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import static chess.ChessPiece.PieceType.KING;
+
 /**
  * A class that can manage a chess game, making moves on a board
  * <p>
@@ -119,7 +121,32 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        ChessPosition king = null;
+        for(int i = 1; i < 9; i++){
+            for(int j = 1; j < 9; j++){
+                ChessPosition startPos = new ChessPosition(i, j);
+                if(currBoard.getPiece(startPos) != null && currBoard.getPiece(startPos).getPieceType() == KING && currBoard.getPiece(startPos).getTeamColor() == teamColor){
+                    king = startPos;
+                    break;
+                }
+            }
+        }
+
+        Set<ChessMove> opponantMoves = new HashSet<>();
+        for(int i = 1; i < 9; i++){
+            for(int j = 1; j < 9; j++){
+                ChessPosition startPos = new ChessPosition(i, j);
+                if(currBoard.getPiece(startPos) != null && currBoard.getPiece(startPos).getTeamColor() != teamColor){
+                    opponantMoves =(Set<ChessMove>) currBoard.getPiece(startPos).pieceMoves(currBoard, startPos);
+                    for(ChessMove move : opponantMoves){
+                        if(move.getEndPosition().equals(king)){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**
