@@ -114,6 +114,22 @@ public class ChessGame {
         if(validMoves.isEmpty() || !validMoves.contains(move)){
             throw new InvalidMoveException("not a move");
         }
+        //make the move
+        //checks if piece is there
+        if(currBoard.getPiece(move.getEndPosition()) != null){
+            currBoard.removePiece(move.getEndPosition());
+        }
+        currBoard.addPiece(move.getEndPosition(), currBoard.getPiece(move.getStartPosition()));
+        //move old piece
+        currBoard.removePiece(move.getStartPosition());
+        //change color
+        if(turn == TeamColor.WHITE){
+            turn = TeamColor.BLACK;
+        }
+        else{
+            turn = TeamColor.WHITE;
+        }
+
     }
 
     /**
