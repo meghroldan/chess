@@ -55,4 +55,5 @@ public class ChessPosition {
                 ", col1=" + colFill+
                 '}';
     }
+
 }

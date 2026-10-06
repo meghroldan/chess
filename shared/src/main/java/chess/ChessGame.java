@@ -1,8 +1,6 @@
 package chess;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static chess.ChessPiece.PieceType.KING;
 
@@ -95,6 +93,10 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
+        if((currBoard.getPiece((move.getStartPosition())).getPieceType()) == null){
+            InvalidMoveException exceptionN = new InvalidMoveException("Not valid piece");
+            throw exceptionN;
+        }
         ChessPiece.PieceType tempType = currBoard.getPiece(move.getStartPosition()).getPieceType();
         TeamColor tempColor = currBoard.getPiece(move.getStartPosition()).getTeamColor();
 
@@ -182,7 +184,17 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        for(int i = 1; i < 9; i++) {
+            for (int j=1; j < 9; j++) {
+                ChessPosition startPos=new ChessPosition(i, j);
+                if (currBoard.getPiece(startPos) != null && currBoard.getPiece(startPos).getTeamColor() == teamColor) {
+                    if (!validMoves(startPos).isEmpty()) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -202,4 +214,22 @@ public class ChessGame {
     public ChessBoard getBoard() {
         return currBoard;
     }
+
+    /*
+    @Override
+    public int hashCode() {
+        return Objects.hash(currBoard, validMoves, turn);
+    }
+     */
+
+    /*
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessGame that=(ChessGame) o;
+        return (Objects.equals(currBoard, that.currBoard) && Objects.equals(validMoves, that.validMoves) && Objects.equals(turn, that.turn));
+    }
+     */
+
 }
