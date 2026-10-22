@@ -77,10 +77,7 @@ public class KnightMove implements PieceMovement{
             moves.add(tempMove);
         }
 
-        if(moves == null){
-            //System.out.println("No moves available");
-            return null;
-        }
+
         return moves;
     }
 }

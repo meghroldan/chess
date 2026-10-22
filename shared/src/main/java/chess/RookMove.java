@@ -85,11 +85,6 @@ public class RookMove implements PieceMovement{
 
         }
 
-        if(moves == null){
-            //System.out.println("No moves available");
-            return null;
-        }
-
         return moves;
     }
 }
