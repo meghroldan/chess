@@ -1,0 +1,9 @@
+
+s	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(¥“²–ûÿÿÿÿ
+n	java:S135&"YReduce the total number of break and continue statements in this loop to use at most one.(èĞœ
+s	java:S1356"YReduce the total number of break and continue statements in this loop to use at most one.(Æ³Ú øÿÿÿÿ
+s	java:S135G"YReduce the total number of break and continue statements in this loop to use at most one.(ëµî¨üÿÿÿÿ
+7
+java:S1116	"Remove this empty statement.(Ú—è¼ıÿÿÿÿ
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 36 to the 15 allowed.(¡„ç

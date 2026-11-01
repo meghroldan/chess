@@ -1,6 +1,6 @@
 package server;
 
-import io.javalin.*;
+import io.javalin.Javalin;
 
 public class Server {
 

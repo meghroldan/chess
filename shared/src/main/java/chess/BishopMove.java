@@ -19,7 +19,7 @@ public class BishopMove implements PieceMovement{
 
         int tempRow = row;
         int tempCol = col;
-        for(int i = col + 1; i < 9; i++){
+        for(int i = (col + 1); i < 9; i++){
             tempRow--;
             if(tempRow > 0) {
                 tempPos=new ChessPosition(tempRow, i);
@@ -43,7 +43,7 @@ public class BishopMove implements PieceMovement{
 
         tempRow = row;
         tempCol = col;
-        for(int i = col - 1; i > 0; i--){
+        for(int i = (col - 1); i > 0; i--){
             tempRow++;
             if(tempRow < 9) {
                 tempPos=new ChessPosition(tempRow, i);
@@ -66,7 +66,7 @@ public class BishopMove implements PieceMovement{
 
         tempRow = row;
         tempCol = col;
-        for(int i = row - 1; i > 0; i--){
+        for(int i = (row - 1); i > 0; i--){
             tempCol--;
             if(tempCol > 0) {
                 tempPos=new ChessPosition(i, tempCol);
@@ -90,7 +90,7 @@ public class BishopMove implements PieceMovement{
 
         tempRow = row;
         tempCol = col;
-        for(int i = row + 1; i < 9; i++){
+        for(int i = (row + 1); i < 9; i++){
             tempCol++;
             if(tempCol < 9) {
                 tempPos=new ChessPosition(i, tempCol);

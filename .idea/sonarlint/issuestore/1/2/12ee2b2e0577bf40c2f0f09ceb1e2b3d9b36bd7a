@@ -1,0 +1,30 @@
+
+k
+java:S1192~"PDefine a constant instead of duplicating this literal "not valid piece" 3 times.(§ο£ÿÿÿÿÿ
+F
+java:S1066α"/Merge this if statement with the enclosing one.(‹θη
+F
+java:S1066ό"/Merge this if statement with the enclosing one.(‹θη
+|
+java:S1488~"aImmediately throw this expression instead of assigning it to the temporary variable "exceptionN".(§ο£ÿÿÿÿÿ
+}
+java:S1488‚"aImmediately throw this expression instead of assigning it to the temporary variable "exceptionN".(§ο£ÿÿÿÿÿ
+}
+java:S1488‰"aImmediately throw this expression instead of assigning it to the temporary variable "exceptionN".(ι²Αϋÿÿÿÿ
+X
+java:S1854;"=Remove this useless assignment to local variable "tempMoves".(Λ›ώψÿÿÿÿ
+I
+java:S1481;".Remove this unused "tempMoves" local variable.(Λ›ώψÿÿÿÿ
+P	java:S125H"<This block of commented-out lines of code should be removed.(Ύ¦Έ$
+m
+java:S3776U"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ρακδÿÿÿÿÿ
+X
+java:S1854…"<Remove this useless assignment to local variable "tempType".(ληΟψÿÿÿÿ
+Z
+java:S1854">Remove this useless assignment to local variable "exceptionN".(§ο£ÿÿÿÿÿ
+K
+java:S1481"/Remove this unused "exceptionN" local variable.(§ο£ÿÿÿÿÿ
+i
+java:S3776΄"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(„έΚ
+]
+java:S1854Α"ARemove this useless assignment to local variable "opponantMoves".(Ν Μψÿÿÿÿ
