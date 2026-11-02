@@ -8,6 +8,7 @@ import model.AuthData;
 import model.GameData;
 import model.UserData;
 import request.GameCreationRequest;
+import request.GameJoinRequest;
 import result.GameCreationResult;
 
 import java.util.HashMap;
@@ -40,15 +41,20 @@ public class GameService {
         return result;
     }
 
-    public void joinGame(String token, String playColor, Integer gameID) throws DataAccessException {
+    public void joinGame(String token, GameJoinRequest request) throws DataAccessException {
 
+        String playColor = request.playerColor();
+        if(playColor == null){
+            throw new DataAccessException("Error: bad request");
+        }
+        if(!(playColor.equals("WHITE")) && !(playColor.equals("BLACK"))){
+            throw new DataAccessException("Error: bad request");
+        }
+        Integer gameID = request.gameID();
         //TODO add tests for no token, playColor, gameID, WHITE and BLACK taken, WHITE and BLACK free
         AuthData tokenData = authDAO.getAuth(token);
         if(tokenData == null){
             throw new DataAccessException("Error: unauthorized");
-        }
-        if(playColor == null){
-            throw new DataAccessException("Error: bad request");
         }
         if(gameID == null){
             throw new DataAccessException("Error: bad request");
