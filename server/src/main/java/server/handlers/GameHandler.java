@@ -5,6 +5,7 @@ import dataaccess.DataAccessException;
 import io.javalin.http.Handler;
 import request.GameCreationRequest;
 import request.LogoutRequest;
+import request.RegisterRequest;
 import result.GameCreationResult;
 import service.GameService;
 
@@ -22,7 +23,7 @@ public class GameHandler {
             Gson gson = new Gson();
             String body = ctx.body();
 
-            GameCreationRequest request = new GameCreationRequest(body);
+            GameCreationRequest request = gson.fromJson(body, GameCreationRequest.class);
             GameCreationResult result = gameService.createGame(authToken, request);
 
             var json = gson.toJson(result);

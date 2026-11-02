@@ -31,7 +31,7 @@ public class GameService {
         if(tokenData == null){
             throw new DataAccessException("Error: unauthorized");
         }
-        if(gameCreationRequest.gameName() == null){
+        if(gameCreationRequest.gameName() == null || gameCreationRequest.gameName().equals("")){
             throw new DataAccessException("Error: bad request");
         }
 
