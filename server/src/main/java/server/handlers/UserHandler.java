@@ -1,8 +1,11 @@
 package server.handlers;
 
 import com.google.gson.Gson;
+import dataaccess.DataAccessException;
 import org.jetbrains.annotations.NotNull;
+import request.LoginRequest;
 import request.RegisterRequest;
+import result.LoginResult;
 import result.RegisterResult;
 import service.UserService;
 import io.javalin.http.Context;
@@ -18,20 +21,49 @@ public class UserHandler{
     }
 
     public Handler register = ctx -> {
+        try {
+            Gson gson = new Gson();
+            String body = ctx.body();
 
-        Gson gson = new Gson();
+            RegisterRequest request = gson.fromJson(body, RegisterRequest.class);
+            RegisterResult result = userService.register(request);
 
-        String body = ctx.body();
+            var json = gson.toJson(result);
+            ctx.result(json);
 
-        RegisterRequest request = gson.fromJson(body, RegisterRequest.class);
+        }catch(DataAccessException exception) {
+            if (exception.getMessage().equals("Error: unauthorized")) {
+                ctx.status(401);
+                ctx.result("{\"message\":\"Error: unauthorized\"}"); // TODO maybe json this ctx.result(gson.toJson(exception.getMessage())
+            }
+        }
 
-        RegisterResult result = userService.register(request);
-
-        var json = gson.toJson(result);
-
-        ctx.result(json);
+    };
 
 
+
+    public Handler login = ctx -> {
+        try {
+            Gson gson = new Gson();
+            String body = ctx.body();
+
+            LoginRequest request = gson.fromJson(body, LoginRequest.class);
+            LoginResult result = userService.login(request);
+
+            var json = gson.toJson(result);
+            ctx.status(200);
+            ctx.result(json);
+        }
+        catch(DataAccessException exception){
+            if (exception.getMessage().equals("Error: unauthorized")){
+                ctx.status(401);
+                ctx.result("{\"message\":\"Error: unauthorized\"}"); //maybe json this
+            }
+            if (exception.getMessage().equals("Error: bad request")){
+                ctx.status(400);
+                ctx.result("{\"message\":\"Error: bad request\"}"); //maybe json this
+            }
+        }
     };
 
 }

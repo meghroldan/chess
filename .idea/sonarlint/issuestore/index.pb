@@ -47,8 +47,6 @@ _
 /server/src/main/java/request/LogoutRequest.java,4\c\4c219518e37a57ff66a3048d6c059441a6453aff
 a
 1server/src/test/java/service/UserServiceTest.java,f\8\f83e2b8b7a9719d4425a9cc2599f40c240264d67
-f
-6server/src/main/java/server/handlers/ClearHandler.java,7\6\765947bad578e2405244b6ff8cd2f66e691b3b3a
 e
 5server/src/main/java/server/handlers/GameHandler.java,c\3\c34b486e298628bec7a1d0867c273af0454f59b9
 e
