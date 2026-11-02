@@ -10,7 +10,9 @@ import model.UserData;
 import request.GameCreationRequest;
 import request.GameJoinRequest;
 import result.GameCreationResult;
+import result.GameListResult;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameService {
@@ -79,15 +81,22 @@ public class GameService {
             return gameDAO.getGame(gameID);
     }
 
-    public HashMap<Integer, GameData> getGamesList(String token)  throws DataAccessException {
+    public GameListResult getGamesList(String token)  throws DataAccessException {
 
         //TODO write successful and not successful tests
         AuthData tokenData = authDAO.getAuth(token);
         if(tokenData == null){
             throw new DataAccessException("Error: unauthorized");
         }
+        //if(gameDAO.listGames().isEmpty()){
+        //    return new HashMap<Integer, GameData>();
+        //}
 
-        return gameDAO.listGames();
+        HashMap<Integer, GameData> list = gameDAO.listGames();
+
+        GameListResult listResult = new GameListResult(new ArrayList<>(list.values()));
+
+        return listResult;
     }
 
 

@@ -35,8 +35,6 @@ X
 (server/src/main/java/model/UserData.java,2\4\2476194a4dd2a5e15bc738c08f152d1627c10f98
 X
 (server/src/main/java/model/AuthData.java,4\b\4bfacd510cad685eee9c29bc5d8c4b82cc628470
-_
-/server/src/main/java/result/GameListResult.java,d\3\d3d6fa0a56ad59bd76df610ff44f898abc023b52
 \
 ,server/src/main/java/dataaccess/AuthDAO.java,3\2\32b7a2b97a8957e906a6d7e19358db18d9b6f1b5
 b

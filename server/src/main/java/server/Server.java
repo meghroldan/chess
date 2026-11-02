@@ -38,6 +38,7 @@ public class Server {
         javalin.delete("/db", clearHandler.clear);
         javalin.post("/game", gameHandler.createGame);
         javalin.put("/game", gameHandler.joinGame);
+        javalin.get("/game", gameHandler.listGames);
 
         //javalin.addEndpoint(register);
 
