@@ -2,6 +2,9 @@ package server;
 
 import dataaccess.*;
 import io.javalin.Javalin;
+import server.handlers.ClearHandler;
+import server.handlers.GameHandler;
+import server.handlers.UserHandler;
 import service.ClearService;
 import service.GameService;
 import service.UserService;
@@ -20,6 +23,11 @@ public class Server {
         UserService userService = new UserService(userDAO, authDAO);
         ClearService clearService = new ClearService(userDAO, authDAO, gameDAO);
         GameService gameService = new GameService(authDAO, gameDAO);
+
+        //Add Handlers
+        UserHandler userHandler = new UserHandler(userService);
+        ClearHandler clearHandler = new ClearHandler(clearService);
+        GameHandler gameHandler = new GameHandler(gameService);
 
         // Register your endpoints and exception handlers here.
 
