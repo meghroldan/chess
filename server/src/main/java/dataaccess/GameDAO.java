@@ -10,9 +10,13 @@ public interface GameDAO {
 
     void clear() throws DataAccessException;
 
-    GameCreationResult createGame(GameCreationRequest gameCreationRequest);
+    GameCreationResult createGame(GameCreationRequest gameCreationRequest) throws DataAccessException ;
 
-    void joinGame(String playerColor, Integer gameID);
+    void joinGame(String playerColor, Integer gameID) throws DataAccessException ;
 
-    HashMap<Integer, GameData> listGames();
+    HashMap<Integer, GameData> listGames() throws DataAccessException ;
+
+    GameData getGame(Integer gameID) throws DataAccessException;
+
+    void updateGame(String playColor, Integer gameID, String username) throws DataAccessException;
 }

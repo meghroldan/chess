@@ -17,7 +17,5 @@ X
 +server/src/main/java/server/ServerMain.java,b\7\b79e5bfbfd31537d51a381718b6c6874185d8b29
 h
 8server/src/main/java/dataaccess/DataAccessException.java,2\e\2ea31417f70d86666411d348ab6c6846566a4c92
-a
-1server/src/test/java/service/GameServiceTest.java,6\b\6bb1bc73f20888998a68a0cdc9965b0afd70a2d3
 b
 2server/src/test/java/service/ClearServiceTest.java,0\7\077a5a04e2f7d160761be627b48d8ba38373f6b2
