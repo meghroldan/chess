@@ -8,11 +8,11 @@ import java.util.HashMap;
 
 public interface GameDAO {
 
-    void clear() throws DataAccessException;
+    void clear();
 
-    GameCreationResult createGame(GameCreationRequest gameCreationRequest) throws DataAccessException ;
+    GameCreationResult createGame(GameCreationRequest gameCreationRequest);
 
-    HashMap<Integer, GameData> listGames() throws DataAccessException ;
+    HashMap<Integer, GameData> listGames();
 
     GameData getGame(Integer gameID) throws DataAccessException;
 

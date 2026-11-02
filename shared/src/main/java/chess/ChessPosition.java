@@ -10,8 +10,8 @@ import java.util.Objects;
  */
 public class ChessPosition {
 
-    private int rowFill;
-    private int colFill;
+    private final int rowFill;
+    private final int colFill;
 
     public ChessPosition(int row, int col) {
         rowFill = row;

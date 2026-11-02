@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class QueenMove implements PieceMovement{
-    private Set<ChessMove> moves = new HashSet<>();;
+    private final Set<ChessMove> moves = new HashSet<>();
 
     @Override
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition position){
@@ -64,7 +64,6 @@ public class QueenMove implements PieceMovement{
         }
 
 
-        tempCol = col;
         for(int i = row - 1; i > 0; i--){
             tempCol--;
             if(tempCol > 0) {

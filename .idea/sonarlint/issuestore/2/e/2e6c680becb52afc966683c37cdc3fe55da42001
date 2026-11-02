@@ -1,25 +1,0 @@
-
-n	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(Ğˆùç
-n	java:S135."YReduce the total number of break and continue statements in this loop to use at most one.(ƒ³íª
-s	java:S135E"YReduce the total number of break and continue statements in this loop to use at most one.(¼ê„Âüÿÿÿÿ
-n	java:S135]"YReduce the total number of break and continue statements in this loop to use at most one.(Ïğïâ
-J
-java:S1066 "/Merge this if statement with the enclosing one.(Ò†­åøÿÿÿÿ
-J
-java:S10668"/Merge this if statement with the enclosing one.(Ò†­åøÿÿÿÿ
-J
-java:S1066O"/Merge this if statement with the enclosing one.(Ò†­åøÿÿÿÿ
-J
-java:S1066g"/Merge this if statement with the enclosing one.(Ò†­åøÿÿÿÿ
-7
-java:S1116	"Remove this empty statement.(Ú—è¼ıÿÿÿÿ
-h
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 68 to the 15 allowed.(¡„ç
-P
-java:S1854";Remove this useless assignment to local variable "tempCol".(„îÎ
-V
-java:S1854-";Remove this useless assignment to local variable "tempCol".(ñ·Ğàıÿÿÿÿ
-V
-java:S1854C";Remove this useless assignment to local variable "tempRow".(ôÎ•éûÿÿÿÿ
-V
-java:S1854[";Remove this useless assignment to local variable "tempRow".(ôÎ•éûÿÿÿÿ

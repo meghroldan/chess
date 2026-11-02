@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class RookMove implements PieceMovement{
 
-    private Set<ChessMove> moves = new HashSet<>();;
+    private final Set<ChessMove> moves = new HashSet<>();
 
     @Override
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition position){

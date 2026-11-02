@@ -9,8 +9,6 @@ import service.ClearService;
 import service.GameService;
 import service.UserService;
 
-import io.javalin.http.Handler;
-
 public class Server {
 
     private final Javalin javalin;

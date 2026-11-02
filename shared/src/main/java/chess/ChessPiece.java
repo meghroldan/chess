@@ -13,9 +13,9 @@ import java.util.Set;
  */
 public class ChessPiece {
 
-    private ChessGame.TeamColor color;
-    private ChessPiece.PieceType typeFill;
-    private Set<ChessMove> validMoves = new HashSet<>();
+    private final ChessGame.TeamColor color;
+    private final ChessPiece.PieceType typeFill;
+    private final Set<ChessMove> validMoves = new HashSet<>();
 
     public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
         color = pieceColor;
@@ -49,7 +49,7 @@ public class ChessPiece {
     }
 
     /**
-     * Calculates all the positions a chess piece can move to
+     * Calculates all the positions a chess piece can move to.
      * Does not take into account moves that are illegal due to leaving the king in
      * danger
      *

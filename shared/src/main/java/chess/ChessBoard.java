@@ -98,6 +98,7 @@ public class ChessBoard{
 
     }
 
+
     public ChessBoard(ChessBoard other) {
 
         this.myPieces = new ChessPiece[8][8];

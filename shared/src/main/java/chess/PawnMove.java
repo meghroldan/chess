@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class PawnMove implements PieceMovement{
 
-    private Set<ChessMove> moves = new HashSet<>();
+    private final Set<ChessMove> moves = new HashSet<>();
 
     @Override
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition position){
@@ -121,7 +121,7 @@ public class PawnMove implements PieceMovement{
                     moves.add(tempMove);
                 }
                 tempPosition=new ChessPosition(row - 1, col - 1);
-                if (row - 1 >= 1 && col - 1 >= 1 && board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor) {
+                if (row - 1 >= 1  && board.getPiece(tempPosition) != null && board.getPiece(tempPosition).getTeamColor() != currColor) {
                     tempMove=new ChessMove(position, tempPosition, null);
                     moves.add(tempMove);
                 }

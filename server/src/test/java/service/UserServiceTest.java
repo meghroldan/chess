@@ -1,9 +1,9 @@
 package service;
 
 import dataaccess.*;
-import org.eclipse.jetty.server.Authentication;
 import org.junit.jupiter.api.Test;
 import request.LoginRequest;
+import request.LogoutRequest;
 import request.RegisterRequest;
 import result.LoginResult;
 import result.RegisterResult;
@@ -38,9 +38,7 @@ public class UserServiceTest {
         AuthDAO newauth = new MemoryAuthDAO();
 
         UserService userService = new UserService(newuser, newauth);
-        RegisterResult result;
-        result = userService.register(request);
-        //result = userService.register(request);
+        userService.register(request);
 
 
         DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
@@ -176,5 +174,52 @@ public class UserServiceTest {
 
         assertEquals("Error: unauthorized", exception.getMessage());
         //assertNotNull(result.authToken());
+    }
+
+    @Test
+    public void logoutCorrectly() throws Exception {
+
+        LoginRequest loginR = new LoginRequest("megan", "1234");
+
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
+
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+
+        userService.register(request);
+        LoginResult result = userService.login(loginR);
+
+        LogoutRequest logoutRequest = new LogoutRequest(result.authToken());
+        userService.logout(logoutRequest);
+
+
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> newauth.getAuth(result.authToken()));
+
+        assertEquals("Error: unauthorized", exception.getMessage());
+    }
+
+    @Test
+    public void logoutWrongAuthToken() throws Exception {
+
+        LoginRequest loginR = new LoginRequest("megan", "1234");
+
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
+
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+
+        userService.register(request);
+        LoginResult result = userService.login(loginR);
+
+        LogoutRequest logoutRequest = new LogoutRequest("9132587");
+
+
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.logout(logoutRequest));
+
+        assertEquals("Error: unauthorized", exception.getMessage());
     }
 }

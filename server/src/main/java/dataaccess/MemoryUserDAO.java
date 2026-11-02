@@ -4,9 +4,18 @@ import model.UserData;
 
 import java.util.HashMap;
 
+/**
+ * Handles all memory and stores data for user
+ */
 public class MemoryUserDAO implements UserDAO{
-    private HashMap<String, UserData> userList = new HashMap<>();
+    private final HashMap<String, UserData> userList = new HashMap<>();
 
+
+    /**
+     * Creates a user if username is not taken already
+     * @param user includes username, password, and email
+     * @throws DataAccessException if username is taken
+     */
     @Override
     public void createUser(UserData user) throws DataAccessException {
         if(userList.containsKey(user.username())){
@@ -16,6 +25,12 @@ public class MemoryUserDAO implements UserDAO{
 
     }
 
+    /**
+     * Returns a user if they are in data
+     * @param username username
+     * @return UserData
+     * @throws DataAccessException if user is not there
+     */
     @Override
     public UserData getUser(String username) throws DataAccessException {
         if(userList.containsKey(username)){
@@ -24,9 +39,15 @@ public class MemoryUserDAO implements UserDAO{
         else{
             throw new DataAccessException("Error: unauthorized");
         }
-        //return userList.get(username);
     }
 
+    /**
+     * When registering for the first time, check if the user is there or not.
+     * This is where we do not call an error if the user is there already since it is a different
+     * kind of error
+     * @param username username
+     * @return UserData
+     */
     public UserData getUserRegister(String username){
         if(userList.containsKey(username)){
             return userList.get(username);
@@ -36,8 +57,11 @@ public class MemoryUserDAO implements UserDAO{
         }
     }
 
+    /**
+     * Clears userList to reset
+     */
     @Override
-    public void clear() throws DataAccessException {
+    public void clear() {
         userList.clear();
 
     }
