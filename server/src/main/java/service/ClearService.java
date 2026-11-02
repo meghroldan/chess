@@ -21,7 +21,12 @@ public class ClearService {
         gameDAO = gameDAO1;
     }
 
+
+    //TODO write tests
     public void clearAll() throws DataAccessException {
+        userDAO.clear();
+        authDAO.clear();
+        gameDAO.clear();
 
     }
 }
