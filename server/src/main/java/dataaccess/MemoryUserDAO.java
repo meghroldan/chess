@@ -22,9 +22,18 @@ public class MemoryUserDAO implements UserDAO{
             return userList.get(username);
         }
         else{
-            throw new DataAccessException("Error: bad request");
+            throw new DataAccessException("Error: unauthorized");
         }
         //return userList.get(username);
+    }
+
+    public UserData getUserRegister(String username){
+        if(userList.containsKey(username)){
+            return userList.get(username);
+        }
+        else{
+            return null;
+        }
     }
 
     @Override

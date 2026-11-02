@@ -36,6 +36,14 @@ public class UserHandler{
                 ctx.status(401);
                 ctx.result("{\"message\":\"Error: unauthorized\"}"); // TODO maybe json this ctx.result(gson.toJson(exception.getMessage())
             }
+            if (exception.getMessage().equals("Error: bad request")){
+                ctx.status(400);
+                ctx.result("{\"message\":\"Error: bad request\"}"); //maybe json this
+            }
+            if (exception.getMessage().equals("Error: already taken")){
+                ctx.status(403);
+                ctx.result("{\"message\":\"Error: already taken\"}"); //maybe json this
+            }
         }
 
     };
@@ -62,6 +70,10 @@ public class UserHandler{
             if (exception.getMessage().equals("Error: bad request")){
                 ctx.status(400);
                 ctx.result("{\"message\":\"Error: bad request\"}"); //maybe json this
+            }
+            if (exception.getMessage().equals("Error: already taken")){
+                ctx.status(403);
+                ctx.result("{\"message\":\"Error: already taken\"}"); //maybe json this
             }
         }
     };

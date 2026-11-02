@@ -35,6 +35,9 @@ public class UserService {
             if(registerRequest.email() == null){
                 throw new DataAccessException("Error: bad request");
             }
+            if(userDAO.getUserRegister(user) != null){
+                throw new DataAccessException("Error: already taken");
+            }
             //create authtoken and data
             String token = UUID.randomUUID().toString();
             //if(token == null){
@@ -65,7 +68,7 @@ public class UserService {
             //}
             UserData userData = userDAO.getUser(user);
 
-            if(userData.password() != loginRequest.password()){
+            if(!(userData.password().equals(loginRequest.password()))){
                 throw new DataAccessException("Error: unauthorized");
             }
 
