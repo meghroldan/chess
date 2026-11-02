@@ -18,9 +18,9 @@ public class UserService {
     private String user;
     private RegisterResult registerR;
 
-        public UserService(){
-            userDAO = new MemoryUserDAO();
-            authDAO = new MemoryAuthDAO();
+        public UserService(UserDAO userDAO1, AuthDAO authDAO1){
+            userDAO = userDAO1;
+            authDAO = authDAO1;
         }
 
 
@@ -52,12 +52,11 @@ public class UserService {
 
 
         public LoginResult login(LoginRequest loginRequest) throws DataAccessException  {
-            //TODO write test if username is null
             user = loginRequest.username();
             if(user == null){
                 throw new DataAccessException("Error: bad request");
             }
-            //TODO write test if password is null
+
             if(loginRequest.password() == null){
                 throw new DataAccessException("Error: bad request");
             }
@@ -66,8 +65,6 @@ public class UserService {
             //}
             UserData userData = userDAO.getUser(user);
 
-
-            //TODO write test if password doesn't match
             if(userData.password() != loginRequest.password()){
                 throw new DataAccessException("Error: unauthorized");
             }
@@ -82,7 +79,14 @@ public class UserService {
 
 
         public void logout(LogoutRequest logoutRequest) throws DataAccessException  {
-            return;
+            //todo write null token logout tests
+            String token = logoutRequest.authToken();
+            if(token == null){
+                throw new DataAccessException("Error: unauthorized");
+            }
+
+            //todo write working token logout test
+            authDAO.deleteAuth(token);
         }
 
         /*

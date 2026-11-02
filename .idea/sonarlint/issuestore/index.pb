@@ -23,5 +23,3 @@ b
 2server/src/test/java/service/ClearServiceTest.java,0\7\077a5a04e2f7d160761be627b48d8ba38373f6b2
 \
 ,server/src/main/java/dataaccess/GameDAO.java,2\f\2f91df5495b3b24343ce6793d5a278799d552304
-b
-2server/src/main/java/dataaccess/MemoryGameDAO.java,1\b\1babdbbe5c7606f1de4b3e02ba92eb53d7a1adfa

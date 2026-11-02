@@ -34,11 +34,13 @@ public class MemoryAuthDAO implements AuthDAO{
 
     @Override
     public void deleteAuth(String authToken) throws DataAccessException {
+
+        //TODO write test authtoken not there
         if(authList.containsKey(authToken)){
             authList.remove(authToken);
         }
         else{
-            throw new DataAccessException("Error: bad request");
+            throw new DataAccessException("Error: unauthorized");
         }
 
     }

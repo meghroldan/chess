@@ -1,6 +1,7 @@
 package service;
 
-import dataaccess.DataAccessException;
+import dataaccess.*;
+import org.eclipse.jetty.server.Authentication;
 import org.junit.jupiter.api.Test;
 import request.LoginRequest;
 import request.RegisterRequest;
@@ -17,7 +18,10 @@ public class UserServiceTest {
 
         RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
-        UserService userService = new UserService();
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
         RegisterResult result;
         result = userService.register(request);
 
@@ -30,7 +34,10 @@ public class UserServiceTest {
 
         RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
-        UserService userService = new UserService();
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
         RegisterResult result;
         result = userService.register(request);
         //result = userService.register(request);
@@ -46,7 +53,10 @@ public class UserServiceTest {
 
         RegisterRequest request = new RegisterRequest(null, "1234", "megan@gmail.com");
 
-        UserService userService = new UserService();
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
 
         DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
 
@@ -60,7 +70,10 @@ public class UserServiceTest {
         RegisterRequest request =
                 new RegisterRequest("megan", null, "megan@gmail.com");
 
-        UserService userService = new UserService();
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
 
         DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
 
@@ -74,7 +87,10 @@ public class UserServiceTest {
         RegisterRequest request =
                 new RegisterRequest("megan", "1234", null);
 
-        UserService userService = new UserService();
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
 
         DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
 
@@ -87,7 +103,10 @@ public class UserServiceTest {
 
         LoginRequest loginR = new LoginRequest("megan", "1234");
 
-        UserService userService = new UserService();
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
 
         RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
@@ -104,7 +123,10 @@ public class UserServiceTest {
 
         LoginRequest loginR = new LoginRequest(null, "1234");
 
-        UserService userService = new UserService();
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
 
         RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
@@ -121,7 +143,10 @@ public class UserServiceTest {
 
         LoginRequest loginR = new LoginRequest("megan", null);
 
-        UserService userService = new UserService();
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
 
         RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
@@ -138,7 +163,10 @@ public class UserServiceTest {
 
         LoginRequest loginR = new LoginRequest("megan", "1324");
 
-        UserService userService = new UserService();
+        UserDAO newuser = new MemoryUserDAO();
+        AuthDAO newauth = new MemoryAuthDAO();
+
+        UserService userService = new UserService(newuser, newauth);
 
         RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
