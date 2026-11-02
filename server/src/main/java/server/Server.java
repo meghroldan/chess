@@ -32,7 +32,7 @@ public class Server {
         GameHandler gameHandler = new GameHandler(gameService);
 
         // Register your endpoints and exception handlers here.
-        //javalin.post("/user", userHandler.register);
+        javalin.post("/user", userHandler.register);
 
         //javalin.addEndpoint(register);
 

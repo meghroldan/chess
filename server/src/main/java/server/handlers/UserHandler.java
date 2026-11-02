@@ -18,6 +18,7 @@ public class UserHandler{
     }
 
     public Handler register = ctx -> {
+
         Gson gson = new Gson();
 
         String body = ctx.body();
@@ -26,7 +27,11 @@ public class UserHandler{
 
         RegisterResult result = userService.register(request);
 
-        ctx.json(result);
+        var json = gson.toJson(result);
+
+        ctx.result(json);
+
+
     };
 
 }
