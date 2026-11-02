@@ -1,8 +1,6 @@
 package service;
 
-import dataaccess.AuthDAO;
-import dataaccess.DataAccessException;
-import dataaccess.UserDAO;
+import dataaccess.*;
 import model.AuthData;
 import model.UserData;
 import request.LoginRequest;
@@ -14,14 +12,21 @@ import result.RegisterResult;
 import java.util.UUID;
 
 public class UserService {
-        private RegisterResult registerR;
-        private LoginResult loginR;
-        private UserDAO userDAO;
-        private AuthDAO authDAO;
-        private String user;
+    private LoginResult loginR;
+    private UserDAO userDAO;
+    private AuthDAO authDAO;
+    private String user;
+    private RegisterResult registerR;
+
+        public UserService(){
+            userDAO = new MemoryUserDAO();
+            authDAO = new MemoryAuthDAO();
+        }
+
 
         public RegisterResult register(RegisterRequest registerRequest) throws DataAccessException {
-            if(registerRequest.username() == null){
+            user = registerRequest.username();
+            if(user == null){
                 throw new DataAccessException("Error: bad request");
             }
             if(registerRequest.password() == null){
@@ -32,33 +37,38 @@ public class UserService {
             }
             //create authtoken and data
             String token = UUID.randomUUID().toString();
-            if(token == null){
-                throw new DataAccessException("Error: bad request");
-            }
-            AuthData authData = new AuthData(token, registerRequest.username());
+            //if(token == null){
+            //    throw new DataAccessException("Error: bad request");
+            //}
+            AuthData authData = new AuthData(token, user);
             authDAO.createAuth(authData);
 
             //create user
-            UserData userData = new UserData(registerRequest.username(), registerRequest.password(), registerRequest.email());
+            UserData userData = new UserData(user, registerRequest.password(), registerRequest.email());
             userDAO.createUser(userData);
-            registerR = new RegisterResult(registerRequest.username(), token);
+            registerR = new RegisterResult(user, token);
             return registerR;
         }
+
+
         public LoginResult login(LoginRequest loginRequest) throws DataAccessException  {
-            if(loginRequest.username() == null){
+            user = loginRequest.username();
+            if(user == null){
                 throw new DataAccessException("Error: bad request");
             }
             //if(loginRequest.authToken() == null){
             //    throw new DataAccessException("Error: bad request");
             //}
-            userDAO.getUser(loginRequest.username());
+            userDAO.getUser(user);
             String token = UUID.randomUUID().toString();
-            AuthData authData = new AuthData(loginRequest.username(), token);
+            AuthData authData = new AuthData(user, token);
             authDAO.createAuth(authData);
 
-            loginR = new LoginResult(loginRequest.username(), token);
+            loginR = new LoginResult(user, token);
             return loginR;
         }
+
+
         public void logout(LogoutRequest logoutRequest) throws DataAccessException  {
             return;
         }
