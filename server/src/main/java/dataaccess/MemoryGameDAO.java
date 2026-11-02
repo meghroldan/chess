@@ -31,14 +31,10 @@ public class MemoryGameDAO implements GameDAO{
         return result;
     }
 
-    @Override
-    public void joinGame(String playerColor, Integer gameID) throws DataAccessException  {
-
-    }
 
     @Override
     public HashMap<Integer, GameData> listGames() throws DataAccessException  {
-        return null;
+        return gameList;
     }
 
     @Override

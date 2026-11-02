@@ -9,6 +9,8 @@ import service.ClearService;
 import service.GameService;
 import service.UserService;
 
+import io.javalin.http.Handler;
+
 public class Server {
 
     private final Javalin javalin;
@@ -30,6 +32,9 @@ public class Server {
         GameHandler gameHandler = new GameHandler(gameService);
 
         // Register your endpoints and exception handlers here.
+        //javalin.post("/user", userHandler.register);
+
+        //javalin.addEndpoint(register);
 
     }
 

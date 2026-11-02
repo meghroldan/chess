@@ -12,8 +12,6 @@ public interface GameDAO {
 
     GameCreationResult createGame(GameCreationRequest gameCreationRequest) throws DataAccessException ;
 
-    void joinGame(String playerColor, Integer gameID) throws DataAccessException ;
-
     HashMap<Integer, GameData> listGames() throws DataAccessException ;
 
     GameData getGame(Integer gameID) throws DataAccessException;
