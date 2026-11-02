@@ -34,12 +34,6 @@ _
 X
 (server/src/main/java/model/UserData.java,2\4\2476194a4dd2a5e15bc738c08f152d1627c10f98
 X
-(server/src/main/java/model/AuthData.java,4\b\4bfacd510cad685eee9c29bc5d8c4b82cc628470
-\
-,server/src/main/java/dataaccess/AuthDAO.java,3\2\32b7a2b97a8957e906a6d7e19358db18d9b6f1b5
-b
-2server/src/main/java/dataaccess/MemoryAuthDAO.java,8\a\8a97b34294ab136117de6d255e41a49f801be6d3
-X
 (server/src/main/java/model/GameData.java,5\b\5b87409e0f8639b8494cb364d63a671c886dd8dc
 \
 ,server/src/main/java/dataaccess/GameDAO.java,2\f\2f91df5495b3b24343ce6793d5a278799d552304

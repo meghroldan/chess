@@ -73,7 +73,7 @@ public class UserService {
             }
 
             String token = UUID.randomUUID().toString();
-            AuthData authData = new AuthData(user, token);
+            AuthData authData = new AuthData(token, user);
             authDAO.createAuth(authData);
 
             loginR = new LoginResult(user, token);

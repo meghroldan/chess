@@ -54,7 +54,17 @@ public class GameService {
         }
         Integer gameID = request.gameID();
         //TODO add tests for no token, playColor, gameID, WHITE and BLACK taken, WHITE and BLACK free
+        System.out.println("Received token = " + token);
         AuthData tokenData = authDAO.getAuth(token);
+
+        //debugging
+        System.out.println("Received token = " + token);
+
+        //AuthData tokenData = authDAO.getAuth(token);
+
+        System.out.println("AuthData = " + tokenData);
+
+
         if(tokenData == null){
             throw new DataAccessException("Error: unauthorized");
         }
