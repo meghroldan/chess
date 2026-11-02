@@ -25,9 +25,3 @@ b
 ,server/src/main/java/dataaccess/GameDAO.java,2\f\2f91df5495b3b24343ce6793d5a278799d552304
 b
 2server/src/main/java/dataaccess/MemoryGameDAO.java,1\b\1babdbbe5c7606f1de4b3e02ba92eb53d7a1adfa
-e
-5server/src/main/java/request/GameCreationRequest.java,1\1\11f896c9ed6800a01b85eeef4f7ebe1dc1304913
-a
-1server/src/main/java/request/GameJoinRequest.java,b\7\b72a949f15768c4fa35c447273693c0def810623
-c
-3server/src/main/java/result/GameCreationResult.java,e\f\ef6b090b7f1725b0ef2b9da8194cef9b05a6fe11

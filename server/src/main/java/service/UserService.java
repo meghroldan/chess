@@ -52,14 +52,26 @@ public class UserService {
 
 
         public LoginResult login(LoginRequest loginRequest) throws DataAccessException  {
+            //TODO write test if username is null
             user = loginRequest.username();
             if(user == null){
+                throw new DataAccessException("Error: bad request");
+            }
+            //TODO write test if password is null
+            if(loginRequest.password() == null){
                 throw new DataAccessException("Error: bad request");
             }
             //if(loginRequest.authToken() == null){
             //    throw new DataAccessException("Error: bad request");
             //}
-            userDAO.getUser(user);
+            UserData userData = userDAO.getUser(user);
+
+
+            //TODO write test if password doesn't match
+            if(userData.password() != loginRequest.password()){
+                throw new DataAccessException("Error: unauthorized");
+            }
+
             String token = UUID.randomUUID().toString();
             AuthData authData = new AuthData(user, token);
             authDAO.createAuth(authData);
