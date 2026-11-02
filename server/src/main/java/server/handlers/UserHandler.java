@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import dataaccess.DataAccessException;
 import org.jetbrains.annotations.NotNull;
 import request.LoginRequest;
+import request.LogoutRequest;
 import request.RegisterRequest;
 import result.LoginResult;
 import result.RegisterResult;
@@ -76,6 +77,37 @@ public class UserHandler{
                 ctx.result("{\"message\":\"Error: already taken\"}"); //maybe json this
             }
         }
+    };
+
+
+    public Handler logout = ctx -> {
+        try {
+            String authToken = ctx.header("Authorization");
+            Gson gson = new Gson();
+            String body = ctx.body();
+
+            LogoutRequest request = new LogoutRequest(authToken);
+            userService.logout(request);
+
+            //var json = gson.toJson(result);
+            ctx.status(200);
+            //ctx.result(json);
+        }
+        catch(DataAccessException exception){
+            if (exception.getMessage().equals("Error: unauthorized")){
+                ctx.status(401);
+                ctx.result("{\"message\":\"Error: unauthorized\"}"); //maybe json this
+            }
+            if (exception.getMessage().equals("Error: bad request")){
+                ctx.status(400);
+                ctx.result("{\"message\":\"Error: bad request\"}"); //maybe json this
+            }
+            if (exception.getMessage().equals("Error: already taken")){
+                ctx.status(403);
+                ctx.result("{\"message\":\"Error: already taken\"}"); //maybe json this
+            }
+        }
+
     };
 
 }
