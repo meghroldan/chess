@@ -29,5 +29,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="mysql.connector.j" level="project" />
+    <orderEntry type="library" exported="" name="mindrot.jbcrypt" level="project" />
   </component>
 </module>
