@@ -8,6 +8,7 @@ import request.*;
 import result.GameCreationResult;
 import result.LoginResult;
 import result.RegisterResult;
+import service.ClearService;
 import service.GameService;
 import service.UserService;
 
@@ -27,215 +28,215 @@ public class sqltest {
         newgame.clear();
     }
 
-        @Test
-        public void registerCorrectly() throws Exception {
+    @Test
+    public void registerCorrectly() throws Exception {
 
-            RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
-            RegisterResult result;
-            result = userService.register(request);
+        UserService userService = new UserService(newuser, newauth);
+        RegisterResult result;
+        result = userService.register(request);
 
-            assertEquals("megan", result.username());
-            assertNotNull(result.authToken());
-        }
+        assertEquals("megan", result.username());
+        assertNotNull(result.authToken());
+    }
 
-        @Test
-        public void userTaken() throws Exception {
+    @Test
+    public void userTaken() throws Exception {
 
-            RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
-            userService.register(request);
+        UserService userService = new UserService(newuser, newauth);
+        userService.register(request);
 
 
-            DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
 
-            assertEquals("Error: already taken", exception.getMessage());
-        }
+        assertEquals("Error: already taken", exception.getMessage());
+    }
 
-        @Test
-        public void registerNoName() throws Exception {
+    @Test
+    public void registerNoName() throws Exception {
 
-            RegisterRequest request = new RegisterRequest(null, "1234", "megan@gmail.com");
+        RegisterRequest request = new RegisterRequest(null, "1234", "megan@gmail.com");
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
+        UserService userService = new UserService(newuser, newauth);
 
-            DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
 
-            assertEquals("Error: bad request", exception.getMessage());
-            //assertNotNull(result.authToken());
-        }
+        assertEquals("Error: bad request", exception.getMessage());
+        //assertNotNull(result.authToken());
+    }
 
-        @Test
-        public void registerNoPassword() throws Exception {
+    @Test
+    public void registerNoPassword() throws Exception {
 
-            RegisterRequest request =
-                    new RegisterRequest("megan", null, "megan@gmail.com");
+        RegisterRequest request =
+                new RegisterRequest("megan", null, "megan@gmail.com");
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
+        UserService userService = new UserService(newuser, newauth);
 
-            DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
 
-            assertEquals("Error: bad request", exception.getMessage());
-            //assertNotNull(result.authToken());
-        }
+        assertEquals("Error: bad request", exception.getMessage());
+        //assertNotNull(result.authToken());
+    }
 
-        @Test
-        public void registerNoEmail() throws Exception {
+    @Test
+    public void registerNoEmail() throws Exception {
 
-            RegisterRequest request =
-                    new RegisterRequest("megan", "1234", null);
+        RegisterRequest request =
+                new RegisterRequest("megan", "1234", null);
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
+        UserService userService = new UserService(newuser, newauth);
 
-            DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.register(request));
 
-            assertEquals("Error: bad request", exception.getMessage());
-            //assertNotNull(result.authToken());
-        }
+        assertEquals("Error: bad request", exception.getMessage());
+        //assertNotNull(result.authToken());
+    }
 
-        @Test
-        public void loginCorrectly() throws Exception {
+    @Test
+    public void loginCorrectly() throws Exception {
 
-            LoginRequest loginR = new LoginRequest("megan", "1234");
+        LoginRequest loginR = new LoginRequest("megan", "1234");
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
+        UserService userService = new UserService(newuser, newauth);
 
-            RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
-            userService.register(request);
-            LoginResult result = userService.login(loginR);
+        userService.register(request);
+        LoginResult result = userService.login(loginR);
 
 
-            assertEquals("megan", result.username());
-            //assertNotNull(result.authToken());
-        }
+        assertEquals("megan", result.username());
+        //assertNotNull(result.authToken());
+    }
 
-        @Test
-        public void loginNoName() throws Exception {
+    @Test
+    public void loginNoName() throws Exception {
 
-            LoginRequest loginR = new LoginRequest(null, "1234");
+        LoginRequest loginR = new LoginRequest(null, "1234");
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
+        UserService userService = new UserService(newuser, newauth);
 
-            RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
-            userService.register(request);
+        userService.register(request);
 
-            DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.login(loginR));
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.login(loginR));
 
-            assertEquals("Error: bad request", exception.getMessage());
-            //assertNotNull(result.authToken());
-        }
+        assertEquals("Error: bad request", exception.getMessage());
+        //assertNotNull(result.authToken());
+    }
 
-        @Test
-        public void loginNoPassword() throws Exception {
+    @Test
+    public void loginNoPassword() throws Exception {
 
-            LoginRequest loginR = new LoginRequest("megan", null);
+        LoginRequest loginR = new LoginRequest("megan", null);
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
+        UserService userService = new UserService(newuser, newauth);
 
-            RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
-            userService.register(request);
+        userService.register(request);
 
-            DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.login(loginR));
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.login(loginR));
 
-            assertEquals("Error: bad request", exception.getMessage());
-            //assertNotNull(result.authToken());
-        }
+        assertEquals("Error: bad request", exception.getMessage());
+        //assertNotNull(result.authToken());
+    }
 
-        @Test
-        public void loginWrongPassword() throws Exception {
+    @Test
+    public void loginWrongPassword() throws Exception {
 
-            LoginRequest loginR = new LoginRequest("megan", "1324");
+        LoginRequest loginR = new LoginRequest("megan", "1324");
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
+        UserService userService = new UserService(newuser, newauth);
 
-            RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
-            userService.register(request);
+        userService.register(request);
 
-            DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.login(loginR));
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.login(loginR));
 
-            assertEquals("Error: unauthorized", exception.getMessage());
-            //assertNotNull(result.authToken());
-        }
+        assertEquals("Error: unauthorized", exception.getMessage());
+        //assertNotNull(result.authToken());
+    }
 
-        @Test
-        public void logoutCorrectly() throws Exception {
+    @Test
+    public void logoutCorrectly() throws Exception {
 
-            LoginRequest loginR = new LoginRequest("megan", "1234");
+        LoginRequest loginR = new LoginRequest("megan", "1234");
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
+        UserService userService = new UserService(newuser, newauth);
 
-            RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
-            userService.register(request);
-            LoginResult result = userService.login(loginR);
+        userService.register(request);
+        LoginResult result = userService.login(loginR);
 
-            LogoutRequest logoutRequest = new LogoutRequest(result.authToken());
-            userService.logout(logoutRequest);
+        LogoutRequest logoutRequest = new LogoutRequest(result.authToken());
+        userService.logout(logoutRequest);
 
 
-            DataAccessException exception = assertThrows(DataAccessException.class, () -> newauth.getAuth(result.authToken()));
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> newauth.getAuth(result.authToken()));
 
-            assertEquals("Error: unauthorized", exception.getMessage());
-        }
+        assertEquals("Error: unauthorized", exception.getMessage());
+    }
 
-        @Test
-        public void logoutWrongAuthToken() throws Exception {
+    @Test
+    public void logoutWrongAuthToken() throws Exception {
 
-            LoginRequest loginR = new LoginRequest("megan", "1234");
+        LoginRequest loginR = new LoginRequest("megan", "1234");
 
-            UserDAO newuser = new SQLUserDAO();
-            AuthDAO newauth = new SQLAuthDAO();
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
 
-            UserService userService = new UserService(newuser, newauth);
+        UserService userService = new UserService(newuser, newauth);
 
-            RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
 
-            userService.register(request);
-            LoginResult result = userService.login(loginR);
+        userService.register(request);
+        LoginResult result = userService.login(loginR);
 
-            LogoutRequest logoutRequest = new LogoutRequest("9132587");
+        LogoutRequest logoutRequest = new LogoutRequest("9132587");
 
 
-            DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.logout(logoutRequest));
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.logout(logoutRequest));
 
-            assertEquals("Error: unauthorized", exception.getMessage());
-        }
+        assertEquals("Error: unauthorized", exception.getMessage());
+    }
 
     @Test
     public void createGameCorrectly() throws Exception {
@@ -426,6 +427,29 @@ public class sqltest {
 
         GameJoinRequest requestJoin = new GameJoinRequest("BLACK", resultGame.gameID());
         assertDoesNotThrow(() -> gameService.getGamesList(result.authToken()));
+    }
+
+    @Test
+    public void clearCorrectly() throws Exception {
+
+        LoginRequest loginR = new LoginRequest("megan", "1234");
+
+        UserDAO newuser = new SQLUserDAO();
+        AuthDAO newauth = new SQLAuthDAO();
+        GameDAO newgame = new SQLGameDAO();
+
+        UserService userService = new UserService(newuser, newauth);
+        ClearService clearService = new ClearService(newuser, newauth, newgame);
+
+        RegisterRequest request = new RegisterRequest("megan", "1234", "megan@gmail.com");
+
+        RegisterResult result = userService.register(request);
+        LogoutRequest logoutRequest = new LogoutRequest(result.authToken());
+        clearService.clearAll();
+
+        DataAccessException exception = assertThrows(DataAccessException.class, () -> userService.logout(logoutRequest));
+
+        assertEquals("Error: unauthorized", exception.getMessage());
     }
 
 

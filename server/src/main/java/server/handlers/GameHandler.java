@@ -45,13 +45,17 @@ public class GameHandler {
                 ctx.status(401);
                 ctx.result("{\"message\":\"Error: unauthorized\"}"); //maybe json this
             }
-            if (exception.getMessage().equals("Error: bad request")){
+            else if (exception.getMessage().equals("Error: bad request")){
                 ctx.status(400);
                 ctx.result("{\"message\":\"Error: bad request\"}"); //maybe json this
             }
-            if (exception.getMessage().equals("Error: already taken")){
+            else if (exception.getMessage().equals("Error: already taken")){
                 ctx.status(403);
                 ctx.result("{\"message\":\"Error: already taken\"}"); //maybe json this
+            }
+            else{
+                ctx.status(500);
+                ctx.result("{\"message\":\"Error: server error\"}"); //maybe json this
             }
         }
 
@@ -76,13 +80,17 @@ public class GameHandler {
                 ctx.status(401);
                 ctx.result("{\"message\":\"Error: unauthorized\"}"); //maybe json this
             }
-            if (exception.getMessage().equals("Error: bad request")){
+            else if (exception.getMessage().equals("Error: bad request")){
                 ctx.status(400);
                 ctx.result("{\"message\":\"Error: bad request\"}"); //maybe json this
             }
-            if (exception.getMessage().equals("Error: already taken")){
+            else if (exception.getMessage().equals("Error: already taken")){
                 ctx.status(403);
                 ctx.result("{\"message\":\"Error: already taken\"}"); //maybe json this
+            }
+            else{
+                ctx.status(500);
+                ctx.result("{\"message\":\"Error: server error\"}"); //maybe json this
             }
         }
 
@@ -108,13 +116,17 @@ public class GameHandler {
                 ctx.status(401);
                 ctx.result("{\"message\":\"Error: unauthorized\"}"); //maybe json this
             }
-            if (exception.getMessage().equals("Error: bad request")){
+            else if (exception.getMessage().equals("Error: bad request")){
                 ctx.status(400);
                 ctx.result("{\"message\":\"Error: bad request\"}"); //maybe json this
             }
-            if (exception.getMessage().equals("Error: already taken")){
+            else if (exception.getMessage().equals("Error: already taken")){
                 ctx.status(403);
                 ctx.result("{\"message\":\"Error: already taken\"}"); //maybe json this
+            }
+            else{
+                ctx.status(500);
+                ctx.result("{\"message\":\"Error: server error\"}"); //maybe json this
             }
         }
 

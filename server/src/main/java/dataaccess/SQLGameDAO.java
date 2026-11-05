@@ -154,5 +154,38 @@ public class SQLGameDAO implements GameDAO{
     public void updateGame(String playColor, Integer gameID, String username) throws DataAccessException {
         isDatabaseMade();
 
+
+        if(playColor.equals("WHITE")) {
+            try (var conn = DatabaseManager.getConnection();
+                 var stmt = conn.prepareStatement(
+                         "UPDATE gameDATA SET whiteUsername = ? WHERE gameID = ?")) {
+
+                stmt.setString(1, username);
+                stmt.setInt(2, gameID);
+                stmt.executeUpdate();
+
+
+            } catch (SQLException exception) {
+                //exception.printStackTrace();
+                throw new DataAccessException("Error: bad request");
+            }
+        }
+
+        if(playColor.equals("BLACK")) {
+            try (var conn = DatabaseManager.getConnection();
+                 var stmt = conn.prepareStatement(
+                         "UPDATE gameDATA SET blackUsername = ? WHERE gameID = ?")) {
+
+                stmt.setString(1, username);
+                stmt.setInt(2, gameID);
+                stmt.executeUpdate();
+
+
+            } catch (SQLException exception) {
+                //exception.printStackTrace();
+                throw new DataAccessException("Error: bad request");
+            }
+        }
+
     }
 }

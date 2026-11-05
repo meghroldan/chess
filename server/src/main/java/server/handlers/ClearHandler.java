@@ -35,6 +35,10 @@ public class ClearHandler {
                 ctx.status(401);
                 ctx.result("{\"message\":\"Error: unauthorized\"}");
             }
+            else{
+                ctx.status(500);
+                ctx.result("{\"message\":\"Error: server error\"}"); //maybe json this
+            }
         }
 
     };

@@ -62,7 +62,7 @@ public class DatabaseManager {
         } catch (SQLException ex) {
             ex.printStackTrace();
             System.out.println(ex.getMessage());
-            throw new DataAccessException("failed to create database", ex);
+            throw new DataAccessException("failed to create database");
         }
     }
 
