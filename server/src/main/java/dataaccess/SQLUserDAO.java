@@ -81,7 +81,7 @@ public class SQLUserDAO implements UserDAO{
     }
 
     @Override
-    public UserData getUserRegister(String username) throws DataAccessException {
+    public UserData getUserRegister(String username) throws DataAccessException { //TODO
         isDatabaseMade();
         return null;
     }
