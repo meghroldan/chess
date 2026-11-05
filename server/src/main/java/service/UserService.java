@@ -3,6 +3,7 @@ package service;
 import dataaccess.*;
 import model.AuthData;
 import model.UserData;
+import org.mindrot.jbcrypt.BCrypt;
 import request.LoginRequest;
 import request.LogoutRequest;
 import request.RegisterRequest;
@@ -80,9 +81,9 @@ public class UserService {
             throw new DataAccessException("Error: bad request");
         }
 
-        UserData userData = userDAO.getUser(user);
+        UserData userData = userDAO.getUser(user);  //not getting user back
 
-        if(!(userData.password().equals(loginRequest.password()))){
+        if(!BCrypt.checkpw(loginRequest.password(), userData.password())){  //make sure this still works w memorydao
             throw new DataAccessException("Error: unauthorized");
         }
 

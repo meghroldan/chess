@@ -11,7 +11,6 @@ public class MemoryAuthDAO implements AuthDAO{
 
     private final HashMap<String, AuthData> authList = new HashMap<>();
 
-
     /**
      * Clears authList to reset
      */

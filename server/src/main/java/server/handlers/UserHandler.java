@@ -65,6 +65,7 @@ public class UserHandler{
      * Reports back successes and errors
      */
     public Handler login = ctx -> {
+        System.out.println("LOGIN HANDLER HIT");
         try {
             Gson gson = new Gson();
             String body = ctx.body();

@@ -26,6 +26,9 @@ public class DatabaseManager {
              var stmt = conn.createStatement();) {
             preparedStatement.executeUpdate();
 
+            stmt.execute("USE " + databaseName);
+
+
             stmt.executeUpdate("""
                     CREATE TABLE IF NOT EXISTS userData (
                         username VARCHAR(255) NOT NULL,
@@ -54,7 +57,11 @@ public class DatabaseManager {
                     )
                     """);
 
+
+
         } catch (SQLException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
             throw new DataAccessException("failed to create database", ex);
         }
     }
