@@ -12,11 +12,13 @@ import service.UserService;
 public class Server {
 
     private final Javalin javalin;
-    private final UserDAO userDAO = new MemoryUserDAO();
-    private final AuthDAO authDAO = new MemoryAuthDAO();
-    private final GameDAO gameDAO = new MemoryGameDAO();
 
-    public Server() {
+    private final UserDAO userDAO = new SQLUserDAO();
+    private final AuthDAO authDAO = new SQLAuthDAO();
+    private final GameDAO gameDAO = new SQLGameDAO();
+
+
+    public Server(){
         javalin = Javalin.create(config -> config.staticFiles.add("web"));
 
         //Create Service

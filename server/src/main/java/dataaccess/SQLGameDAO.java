@@ -10,32 +10,43 @@ import static dataaccess.DatabaseManager.createDatabase;
 
 public class SQLGameDAO implements GameDAO{
 
-    public SQLGameDAO() throws DataAccessException{
-        createDatabase();
+    private boolean created = false;
+
+    private void isDatabaseMade() throws DataAccessException {
+        if (!created) {
+            createDatabase();
+            created = true;
+        }
+    }
+
+
+    @Override
+    public void clear() throws DataAccessException {
+        isDatabaseMade();
+
     }
 
     @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public GameCreationResult createGame(GameCreationRequest gameCreationRequest) {
+    public GameCreationResult createGame(GameCreationRequest gameCreationRequest) throws DataAccessException {
+        isDatabaseMade();
         return null;
     }
 
     @Override
-    public HashMap<Integer, GameData> listGames() {
+    public HashMap<Integer, GameData> listGames() throws DataAccessException {
+        isDatabaseMade();
         return null;
     }
 
     @Override
     public GameData getGame(Integer gameID) throws DataAccessException {
+        isDatabaseMade();
         return null;
     }
 
     @Override
     public void updateGame(String playColor, Integer gameID, String username) throws DataAccessException {
+        isDatabaseMade();
 
     }
 }

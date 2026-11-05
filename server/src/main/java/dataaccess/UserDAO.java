@@ -8,7 +8,7 @@ public interface UserDAO {
 
     UserData getUser(String username) throws DataAccessException;
 
-    void clear();
+    void clear() throws DataAccessException;
 
-    UserData getUserRegister(String username);
+    UserData getUserRegister(String username) throws DataAccessException;
 }
