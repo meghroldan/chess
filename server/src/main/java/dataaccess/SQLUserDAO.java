@@ -56,7 +56,7 @@ public class SQLUserDAO implements UserDAO{
                     UserData userData = new UserData(tableValue.getString("username"), tableValue.getString("password"), tableValue.getString("email"));
                     return userData;
                 }
-                return null;
+                throw new DataAccessException("Error: unauthorized");
             }
 
         } catch (SQLException exception) {

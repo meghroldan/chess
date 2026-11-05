@@ -83,6 +83,10 @@ public class UserService {
 
         UserData userData = userDAO.getUser(user);  //not getting user back
 
+        if (userData == null) {
+            throw new DataAccessException("Error: unauthorized");
+        }
+
         if(!BCrypt.checkpw(loginRequest.password(), userData.password())){  //make sure this still works w memorydao
             throw new DataAccessException("Error: unauthorized");
         }

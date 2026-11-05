@@ -68,8 +68,8 @@ public class SQLAuthDAO implements AuthDAO{
                     AuthData authData = new AuthData(tableValue.getString("authToken"), tableValue.getString("username"));
                     return authData;
                 }
-                return null;
             }
+            throw new DataAccessException("Error: unauthorized");
 
         } catch (SQLException exception) {
             throw new DataAccessException("Unable to get authToken");
@@ -78,6 +78,7 @@ public class SQLAuthDAO implements AuthDAO{
 
     @Override
     public void deleteAuth(String authToken) throws DataAccessException {
+        isDatabaseMade();
         try(var conn = DatabaseManager.getConnection();
             var stmt = conn.prepareStatement(
                     "DELETE FROM authData WHERE authToken = ?")){
@@ -85,12 +86,18 @@ public class SQLAuthDAO implements AuthDAO{
             stmt.setString(1, authToken);
 
 
-            stmt.executeUpdate();
+            //stmt.executeUpdate();
+
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected == 0) {
+                throw new DataAccessException("Error: unauthorized");
+            }
 
         } catch (SQLException exception) {
-            throw new DataAccessException("Unable to get authToken");
+            throw new DataAccessException("Unable to delete authToken");
         }
-        isDatabaseMade();
+
 
 
 
