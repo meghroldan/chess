@@ -1,7 +1,6 @@
 package dataaccess.sql;
 
 import dataaccess.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import request.*;
@@ -15,7 +14,7 @@ import service.UserService;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class sqltest {
+public class sqlTest {
     private UserDAO newuser = new SQLUserDAO();
     private AuthDAO newauth = new SQLAuthDAO();
     private GameDAO newgame = new SQLGameDAO();
