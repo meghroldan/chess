@@ -2,7 +2,14 @@ package dataaccess;
 
 import model.UserData;
 
+import static dataaccess.DatabaseManager.createDatabase;
+
 public class SQLUserDAO implements UserDAO{
+
+    public SQLUserDAO() throws DataAccessException{
+        createDatabase();
+    }
+
     @Override
     public void createUser(UserData user) throws DataAccessException {
 

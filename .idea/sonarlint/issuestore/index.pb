@@ -7,8 +7,6 @@ Z
 *shared/src/main/java/chess/KnightMove.java,9\3\9351a19549e78162613a8bdf16dc925073b667f0
 X
 (shared/src/main/java/chess/KingMove.java,6\0\607c5c57cad48e496993bc891f80cacc8eb09e15
-h
-8server/src/main/java/dataaccess/DataAccessException.java,2\e\2ea31417f70d86666411d348ab6c6846566a4c92
 Z
 *shared/src/main/java/chess/ChessPiece.java,c\0\c02b93065e1c720b0a958f6a9aa91f709ca1cca9
 r

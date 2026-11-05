@@ -6,7 +6,14 @@ import result.GameCreationResult;
 
 import java.util.HashMap;
 
+import static dataaccess.DatabaseManager.createDatabase;
+
 public class SQLGameDAO implements GameDAO{
+
+    public SQLGameDAO() throws DataAccessException{
+        createDatabase();
+    }
+
     @Override
     public void clear() {
 
