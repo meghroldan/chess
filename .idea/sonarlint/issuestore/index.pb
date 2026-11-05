@@ -1,14 +1,10 @@
 
-]
--shared/src/main/java/chess/PieceMovement.java,b\b\bb4365797cdf55e5c951d90a5320328c81220b92
 X
 (shared/src/main/java/chess/RookMove.java,7\a\7aa54e90d6177c43931f7178a82a9bb3ffc5d119
 Z
 *shared/src/main/java/chess/KnightMove.java,9\3\9351a19549e78162613a8bdf16dc925073b667f0
 X
 (shared/src/main/java/chess/KingMove.java,6\0\607c5c57cad48e496993bc891f80cacc8eb09e15
-Z
-*shared/src/main/java/chess/ChessPiece.java,c\0\c02b93065e1c720b0a958f6a9aa91f709ca1cca9
 r
 Bshared/src/test/java/passoff/chess/piecemoves/BishopMoveTests.java,1\3\134897aea4c3316f03ed158b823e056020b7a76c
 Y

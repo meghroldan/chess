@@ -35,8 +35,8 @@ public class SQLUserDAO implements UserDAO{
             stmt.executeUpdate();
 
         } catch (SQLException exception) {
-            exception.printStackTrace();
-            throw new DataAccessException("Unable to create user", exception);
+            //exception.printStackTrace();
+            throw new DataAccessException("Error: already taken");
         }
     }
 
