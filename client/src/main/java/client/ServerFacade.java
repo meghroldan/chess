@@ -1,7 +1,6 @@
 package client;
 
 import com.google.gson.Gson;
-import dataaccess.DataAccessException;
 import model.AuthData;
 import request.GameCreationRequest;
 import request.GameJoinRequest;
@@ -33,46 +32,46 @@ public class ServerFacade {
         this.serverUrl = "http://localhost:" + port;
     }
 
-    public void clear() throws DataAccessException {
+    public void clear() throws Exception {
         makeResult("DELETE", "/db", null, null, null);
     }
 
 
-    public RegisterResult register(String username, String password, String email) throws DataAccessException {
+    public RegisterResult register(String username, String password, String email) throws Exception {
 
         RegisterRequest registerRequest = new RegisterRequest(username, password, email);
         registerResult = makeResult("POST", "/user", null, registerRequest, RegisterResult.class);
         return registerResult;
     }
 
-    public LoginResult login(String username, String password) throws DataAccessException {
+    public LoginResult login(String username, String password) throws Exception {
 
         LoginRequest loginRequest = new LoginRequest(username, password);
         loginResult = makeResult("POST", "/session", null, loginRequest, LoginResult.class);
         return loginResult;
     }
 
-    public void logout(String authToken) throws DataAccessException{
+    public void logout(String authToken) throws Exception{
         makeResult("DELETE", "/session", authToken, null, null);
     }
 
-    public GameCreationResult createGame(String authToken, String gameName) throws DataAccessException {
+    public GameCreationResult createGame(String authToken, String gameName) throws Exception {
 
         GameCreationRequest gameCreationRequest = new GameCreationRequest(gameName);
         gameCreationResult = makeResult("POST", "/game", authToken, gameCreationRequest, GameCreationResult.class);
         return gameCreationResult;
     }
 
-    public GameListResult listGames(String authToken) throws DataAccessException {
+    public GameListResult listGames(String authToken) throws Exception {
         return makeResult("GET", "/game", authToken, null, GameListResult.class);
     }
 
-    public void joinGame(String authToken, String color, int gameID) throws DataAccessException {
+    public void joinGame(String authToken, String color, int gameID) throws Exception {
         GameJoinRequest gameJoinRequest = new GameJoinRequest(color, gameID);
         makeResult("PUT", "/game", authToken, gameJoinRequest, null);
     }
 
-    private <T> T makeResult(String method, String path, String authToken, Object requestBody, Class<T> responseClass) throws DataAccessException {
+    private <T> T makeResult(String method, String path, String authToken, Object requestBody, Class<T> responseClass) throws Exception {
 
         try {
             System.out.println(serverUrl + path);
@@ -102,7 +101,7 @@ public class ServerFacade {
             if (http.getResponseCode() >= 400) {
 
                 //System.out.println(http.getResponseCode());
-                throw new DataAccessException("Request failed");
+                throw new Exception("Request failed");
             }
 
             if (responseClass == null) {
@@ -114,7 +113,7 @@ public class ServerFacade {
             }
 
         } catch (Exception e) {
-            throw new DataAccessException(e.getMessage());
+            throw new Exception(e.getMessage());
         }
 
     }

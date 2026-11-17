@@ -13,8 +13,6 @@ Y
 -shared/src/main/java/chess/ChessPosition.java,3\b\3b013a24b64d343e15bac32b29d3d69c6c135d82
 _
 /server/src/main/java/dataaccess/SQLUserDAO.java,9\3\93f463d0cc18cf6427e4c1e66a945e5880b71bc7
-_
-/server/src/main/java/dataaccess/SQLAuthDAO.java,9\6\96aa09531c162dded1a6431a8ea71e9b3bc3cf32
 c
 3server/src/main/java/result/GameCreationResult.java,e\f\ef6b090b7f1725b0ef2b9da8194cef9b05a6fe11
 ^
@@ -37,7 +35,5 @@ e
 5server/src/main/java/server/handlers/GameHandler.java,c\3\c34b486e298628bec7a1d0867c273af0454f59b9
 f
 6server/src/test/java/passoff/server/DatabaseTests.java,f\e\fe756adf1db32cf19b0ba4465213263dea6b150d
-i
-9server/src/test/java/passoff/server/StandardAPITests.java,9\4\94f243c94f4488610888d7e06be7837a9ed55c4d
 _
 /server/src/main/java/dataaccess/SQLGameDAO.java,1\0\104cf004342c318954f87f8aa998f5be26fd7d4d

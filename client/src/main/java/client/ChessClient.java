@@ -1,9 +1,7 @@
 package client;
 
 import chess.ChessGame;
-import dataaccess.DataAccessException;
 import model.GameData;
-import client.ServerFacade;
 import ui.PrintBoard;
 
 import java.util.*;
@@ -194,7 +192,7 @@ public class ChessClient {
         }
         catch (IndexOutOfBoundsException e) {
             return "That game number does not exist.\n" + help();
-        } catch (DataAccessException e) {
+        } catch (Exception e) {
             return "Unable to join game. Please try another color or game\n" + help();
         }
     }
@@ -296,9 +294,9 @@ public class ChessClient {
         }
     }
 
-    private void assertSignedIn() throws DataAccessException {
+    private void assertSignedIn() throws Exception {
         if (state == State.LOGGED_OUT) {
-            throw new DataAccessException("You must sign in");
+            throw new Exception("You must sign in");
         }
     }
 }

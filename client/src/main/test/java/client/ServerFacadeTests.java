@@ -1,7 +1,6 @@
 package client.test;
 
 import client.ServerFacade;
-import dataaccess.DataAccessException;
 import org.junit.jupiter.api.*;
 import result.RegisterResult;
 import server.Server;
@@ -50,7 +49,7 @@ public class ServerFacadeTests {
     void registerFail() throws Exception {
 
         facade.register("meg", "1234", "meg@gmail.com");
-        DataAccessException exception = assertThrows(DataAccessException.class, () -> facade.register("meg", "1234", "meg@gmail.com"));
+        Exception exception = assertThrows(Exception.class, () -> facade.register("meg", "1234", "meg@gmail.com"));
     }
 
     @Test
@@ -67,7 +66,7 @@ public class ServerFacadeTests {
         RegisterResult result = facade.register("meg", "1234", "meg@gmail.com");
         facade.createGame(result.authToken(), "Meg's Game");
 
-        DataAccessException exception = assertThrows(DataAccessException.class, () -> facade.createGame(result.authToken(), null));
+        Exception exception = assertThrows(Exception.class, () -> facade.createGame(result.authToken(), null));
     }
 
     @Test
@@ -85,7 +84,7 @@ public class ServerFacadeTests {
         RegisterResult result = facade.register("meg", "1234", "meg@gmail.com");
         facade.createGame(result.authToken(), "Meg's Game");
 
-        DataAccessException exception = assertThrows(DataAccessException.class, () -> facade.logout("randomString"));
+        Exception exception = assertThrows(Exception.class, () -> facade.logout("randomString"));
     }
 
     @Test
@@ -103,7 +102,7 @@ public class ServerFacadeTests {
         RegisterResult result = facade.register("meg", "1234", "meg@gmail.com");
         facade.createGame(result.authToken(), "Meg's Game");
 
-        DataAccessException exception = assertThrows(DataAccessException.class, () -> facade.joinGame(result.authToken(), "GREEN", 1));
+        Exception exception = assertThrows(Exception.class, () -> facade.joinGame(result.authToken(), "GREEN", 1));
     }
 
     @Test
@@ -121,7 +120,7 @@ public class ServerFacadeTests {
         RegisterResult result = facade.register("meg", "1234", "meg@gmail.com");
         facade.createGame(result.authToken(), "Meg's Game");
 
-        DataAccessException exception = assertThrows(DataAccessException.class, () -> facade.listGames("String"));
+        Exception exception = assertThrows(Exception.class, () -> facade.listGames("String"));
     }
 
     @Test
@@ -137,7 +136,7 @@ public class ServerFacadeTests {
 
         RegisterResult result = facade.register("meg", "1234", "meg@gmail.com");
 
-        DataAccessException exception = assertThrows(DataAccessException.class, () -> facade.login("notmeg", "nope"));
+        Exception exception = assertThrows(Exception.class, () -> facade.login("notmeg", "nope"));
     }
 
 }
