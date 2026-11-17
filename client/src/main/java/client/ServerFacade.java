@@ -97,7 +97,7 @@ public class ServerFacade {
             http.connect();
             if (http.getResponseCode() >= 400) {
 
-                System.out.println(http.getResponseCode());
+                //System.out.println(http.getResponseCode());
                 throw new DataAccessException("Request failed");
             }
 
@@ -110,8 +110,6 @@ public class ServerFacade {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
             throw new DataAccessException(e.getMessage());
         }
 
