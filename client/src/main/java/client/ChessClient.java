@@ -128,7 +128,7 @@ public class ChessClient {
 
             currentGames = gameResult.games();
             if (currentGames.isEmpty()) {
-                return "No games available.";
+                return "No games available.\n" + help();
             }
 
             StringBuilder userGamesString = new StringBuilder();
@@ -144,6 +144,7 @@ public class ChessClient {
                 userGamesString.append(gameData.whiteUsername()).append("\n");
                 userGamesString.append("Black: ");
                 userGamesString.append(gameData.blackUsername()).append("\n\n");
+                userGamesString.append(help());
 
             }
 
@@ -156,7 +157,7 @@ public class ChessClient {
 
     private String playGame(){
         if (currentGames == null || currentGames.isEmpty()) {
-            return "Please list games first.";
+            return "Please list games first.\n" + help();
         }
 
         try {
@@ -169,31 +170,52 @@ public class ChessClient {
             System.out.print("Color: ");
             String color = scanner.nextLine();
 
-            color.toUpperCase();
+            color = color.toUpperCase();
 
             if (!color.equals("WHITE") &&
                     !color.equals("BLACK")) {
-                return "Color must be WHITE or BLACK.";
+                return "Color must be WHITE or BLACK.\n" + help();
             }
 
             server.joinGame(authToken, color, gameID);
 
             //TODO display the board
 
-            return "Joined to game successfully. ";
+            return "Joined to game successfully. \n" + help();
         }
         catch (NumberFormatException e) {
-            return "Please enter a valid game number.";
+            return "Please enter a valid game number.\n" + help();
         }
         catch (IndexOutOfBoundsException e) {
-            return "That game number does not exist.";
+            return "That game number does not exist.\n" + help();
         } catch (DataAccessException e) {
-            return "Unable to join game. Please try another color or game";
+            return "Unable to join game. Please try another color or game\n" + help();
         }
     }
 
     private String observeGame(){
-        return output;
+        if (currentGames == null || currentGames.isEmpty()) {
+            return "Please list games first.\n" + help();
+        }
+
+        try {
+            System.out.print("Game Number: ");
+            int gameNumber = Integer.parseInt(scanner.nextLine());
+
+            GameData game = currentGames.get(gameNumber - 1);
+            int gameID = game.gameID();
+
+
+            //TODO display the board
+
+            return "Observing game from white perspective. \n" + help();
+        }
+        catch (NumberFormatException e) {
+            return "Please enter a valid game number.\n" + help();
+        }
+        catch (IndexOutOfBoundsException e) {
+            return "That game number does not exist.\n" + help();
+        }
     }
 
     private String login(){
