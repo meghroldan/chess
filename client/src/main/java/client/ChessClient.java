@@ -1,5 +1,8 @@
 package client;
 
+import dataaccess.DataAccessException;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ChessClient {
@@ -58,10 +61,46 @@ public class ChessClient {
     }
 
     private String evalLoggedOut(String input) {
-        return output;
+        try {
+            String[] tokens = input.toLowerCase().split(" ");
+            String cmd = (tokens.length > 0) ? tokens[0] : "help";
+            String[] params = Arrays.copyOfRange(tokens, 1, tokens.length);
+            return switch (cmd) {
+                case "help" -> help();
+                case "quit" -> "quit";
+                case "login" -> login();
+                case "register" -> register();
+                default -> help();
+            };
+        } catch (Exception ex) {
+            return ex.getMessage();
+        }
+        //return output;
     }
 
     private String evalLoggedIn(String input){
+        return output;
+    }
+
+    private String login(){
+        System.out.println("Enter username: ");
+        String username = scanner.nextLine();
+
+        System.out.println("Enter password: ");
+        String password = scanner.nextLine();
+
+        try {
+            var auth = server.login(username, password);
+            authToken = auth.authToken();
+            state = State.LOGGED_IN;
+
+            return "Logged in successfully.";
+        } catch (Exception e) {
+            return "Login failed.";
+        }
+    }
+
+    private String register(){
         return output;
     }
 
