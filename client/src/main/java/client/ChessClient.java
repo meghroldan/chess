@@ -10,7 +10,6 @@ public class ChessClient {
     private ServerFacade server;
     private Scanner scanner = new Scanner(System.in);
     private State state = State.LOGGED_OUT;
-    private final HashMap<Integer, GameData> gameList = new HashMap<>(); //integers for the user to see
     private ArrayList<GameData> currentGames; //unmapped games
     private String output = "not yet implemented";
     private String authToken;
@@ -119,7 +118,7 @@ public class ChessClient {
             return "Game created successfully. \n" + help();
         } catch (Exception e) {
             System.out.println(authToken);
-            return "Game unable to be created as entered. \n"+ e.getMessage() + help();
+            return "Game unable to be created as entered. Please make sure the name is not already in use. \n"+ e.getMessage() + help();
         }
     }
 
@@ -146,8 +145,6 @@ public class ChessClient {
                 userGamesString.append("Black: ");
                 userGamesString.append(gameData.blackUsername()).append("\n\n");
 
-                gameList.put((i+1), gameData);
-
             }
 
             return userGamesString.toString();
@@ -158,7 +155,41 @@ public class ChessClient {
     }
 
     private String playGame(){
-        return output;
+        if (currentGames == null || currentGames.isEmpty()) {
+            return "Please list games first.";
+        }
+
+        try {
+            System.out.print("Game Number: ");
+            int gameNumber = Integer.parseInt(scanner.nextLine());
+
+            GameData game = currentGames.get(gameNumber - 1);
+            int gameID = game.gameID();
+
+            System.out.print("Color: ");
+            String color = scanner.nextLine();
+
+            color.toUpperCase();
+
+            if (!color.equals("WHITE") &&
+                    !color.equals("BLACK")) {
+                return "Color must be WHITE or BLACK.";
+            }
+
+            server.joinGame(authToken, color, gameID);
+
+            //TODO display the board
+
+            return "Joined to game successfully. ";
+        }
+        catch (NumberFormatException e) {
+            return "Please enter a valid game number.";
+        }
+        catch (IndexOutOfBoundsException e) {
+            return "That game number does not exist.";
+        } catch (DataAccessException e) {
+            return "Unable to join game. Please try another color or game";
+        }
     }
 
     private String observeGame(){
@@ -179,7 +210,7 @@ public class ChessClient {
 
             return "Logged in successfully. \n" + help();
         } catch (Exception e) {
-            return "Login failed. \n" + help();
+            return "Login failed. Please check username and password then try again.\n" + help();
         }
     }
 
@@ -200,7 +231,7 @@ public class ChessClient {
 
             return "Registered successfully.\n" + help();
         } catch (Exception e) {
-            return "Register failed: " + e.getMessage() + "\n" + help();
+            return "Register failed. Please check that you are using a unique username, password, and email" + "\n" + help();
         }
     }
 

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import dataaccess.DataAccessException;
 import model.AuthData;
 import request.GameCreationRequest;
+import request.GameJoinRequest;
 import request.LoginRequest;
 import request.RegisterRequest;
 import result.GameCreationResult;
@@ -62,8 +63,9 @@ public class ServerFacade {
         return makeResult("GET", "/game", authToken, null, GameListResult.class);
     }
 
-    public void joinGame(String authToken, String color, int gameID){
-
+    public void joinGame(String authToken, String color, int gameID) throws DataAccessException {
+        GameJoinRequest gameJoinRequest = new GameJoinRequest(color, gameID);
+        makeResult("PUT", "/game", authToken, gameJoinRequest, null);
     }
 
     private <T> T makeResult(String method, String path, String authToken, Object requestBody, Class<T> responseClass) throws DataAccessException {
