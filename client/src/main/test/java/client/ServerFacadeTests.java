@@ -13,19 +13,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ServerFacadeTests {
 
     private static Server server;
-    private static int port;
+    //private static int port;
     private static ServerFacade facade;
 
     @BeforeAll
     public static void init() {
         server = new Server();
-        port = server.run(0);
+        var port = server.run(0);
+        facade = new ServerFacade(port);
         System.out.println("Started test HTTP server on " + port);
     }
 
     @BeforeEach
     void setup() throws Exception {
-        facade = new ServerFacade(port);
         facade.clear();
     }
 
