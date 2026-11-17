@@ -58,8 +58,8 @@ public class ServerFacade {
         return gameCreationResult;
     }
 
-    public GameListResult listGames(String authToken){
-        return listGames;
+    public GameListResult listGames(String authToken) throws DataAccessException {
+        return makeResult("GET", "/game", authToken, null, GameListResult.class);
     }
 
     public void joinGame(String authToken, String color, int gameID){
@@ -94,8 +94,9 @@ public class ServerFacade {
 
             http.connect();
             if (http.getResponseCode() >= 400) {
-                throw new DataAccessException(
-                        "Request failed");
+
+                System.out.println(http.getResponseCode());
+                throw new DataAccessException("Request failed");
             }
 
             if (responseClass == null) {
@@ -107,6 +108,8 @@ public class ServerFacade {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
             throw new DataAccessException(e.getMessage());
         }
 

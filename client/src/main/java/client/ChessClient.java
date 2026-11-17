@@ -1,16 +1,18 @@
 package client;
 
 import dataaccess.DataAccessException;
+import model.GameData;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class ChessClient {
 
     private ServerFacade server;
     private Scanner scanner = new Scanner(System.in);
     private State state = State.LOGGED_OUT;
-    private String output;
+    private final HashMap<Integer, GameData> gameList = new HashMap<>(); //integers for the user to see
+    private ArrayList<GameData> currentGames; //unmapped games
+    private String output = "not yet implemented";
     private String authToken;
 
     enum State {
@@ -116,12 +118,43 @@ public class ChessClient {
 
             return "Game created successfully. \n" + help();
         } catch (Exception e) {
-            return "Game unable to be created as entered. \n" + help();
+            System.out.println(authToken);
+            return "Game unable to be created as entered. \n"+ e.getMessage() + help();
         }
     }
 
     private String listGames(){
-        return output;
+        try {
+            var gameResult = server.listGames(authToken);
+
+            currentGames = gameResult.games();
+            if (currentGames.isEmpty()) {
+                return "No games available.";
+            }
+
+            StringBuilder userGamesString = new StringBuilder();
+            userGamesString.append("Current Games: \n");
+
+            for (int i = 0; i < currentGames.size(); i++) {
+                GameData gameData = currentGames.get(i);
+
+                userGamesString.append(i + 1);
+                userGamesString.append(". ");
+                userGamesString.append(gameData.gameName()).append("\n");
+                userGamesString.append("White: ");
+                userGamesString.append(gameData.whiteUsername()).append("\n");
+                userGamesString.append("Black: ");
+                userGamesString.append(gameData.blackUsername()).append("\n\n");
+
+                gameList.put((i+1), gameData);
+
+            }
+
+            return userGamesString.toString();
+
+        } catch (Exception e) {
+            return "Games unable to be listed. \n" + help();
+        }
     }
 
     private String playGame(){

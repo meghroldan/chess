@@ -50,6 +50,7 @@ public class GameHandler {
                 ctx.result("{\"message\":\"Error: bad request\"}"); //maybe json this
             }
             else if (exception.getMessage().equals("Error: already taken")){
+                exception.printStackTrace();
                 ctx.status(403);
                 ctx.result("{\"message\":\"Error: already taken\"}"); //maybe json this
             }

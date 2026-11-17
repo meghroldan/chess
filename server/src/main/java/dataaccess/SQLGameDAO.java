@@ -70,7 +70,6 @@ public class SQLGameDAO implements GameDAO{
             return gameCreationResult;
 
         } catch (SQLException exception) {
-            //exception.printStackTrace();
             throw new DataAccessException("Error: already taken");
         }
     }
