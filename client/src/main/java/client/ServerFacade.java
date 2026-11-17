@@ -8,10 +8,19 @@ import result.LoginResult;
 
 public class ServerFacade {
 
+    private final String serverUrl;
     private GameListResult listGames;
     private LoginResult loginResult;
     private RegisterRequest registerRequest;
     private GameCreationResult gameCreationResult;
+
+    public ServerFacade(String serverUrl) {
+        this.serverUrl = serverUrl;
+    }
+
+    public ServerFacade(int port) {
+        this.serverUrl = "http://localhost:" + port;
+    }
 
 
     public RegisterRequest register(String username, String password, String email){
