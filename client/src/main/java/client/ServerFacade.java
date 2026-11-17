@@ -33,6 +33,10 @@ public class ServerFacade {
         this.serverUrl = "http://localhost:" + port;
     }
 
+    public void clear() throws DataAccessException {
+        makeResult("DELETE", "/db", null, null, null);
+    }
+
 
     public RegisterResult register(String username, String password, String email) throws DataAccessException {
 

@@ -15,8 +15,6 @@ _
 /server/src/main/java/dataaccess/SQLUserDAO.java,9\3\93f463d0cc18cf6427e4c1e66a945e5880b71bc7
 _
 /server/src/main/java/dataaccess/SQLAuthDAO.java,9\6\96aa09531c162dded1a6431a8ea71e9b3bc3cf32
-`
-0server/src/main/java/dataaccess/sql/sqlTest.java,3\6\3636f1be2e5b8cdd14b7f2b9e807d069830a3299
 c
 3server/src/main/java/result/GameCreationResult.java,e\f\ef6b090b7f1725b0ef2b9da8194cef9b05a6fe11
 ^
@@ -35,8 +33,6 @@ b
 2server/src/main/java/dataaccess/MemoryGameDAO.java,1\b\1babdbbe5c7606f1de4b3e02ba92eb53d7a1adfa
 _
 /server/src/main/java/result/GameListResult.java,d\3\d3d6fa0a56ad59bd76df610ff44f898abc023b52
-f
-6server/src/main/java/server/handlers/ClearHandler.java,7\6\765947bad578e2405244b6ff8cd2f66e691b3b3a
 e
 5server/src/main/java/server/handlers/GameHandler.java,c\3\c34b486e298628bec7a1d0867c273af0454f59b9
 f

@@ -49,6 +49,7 @@ public class PrintBoard {
         else{
             System.out.print(EscapeSequences.ERASE_SCREEN);
             System.out.print(EscapeSequences.SET_TEXT_BOLD);
+
             for (int row = 1; row <= 8; row++) {
                 System.out.printf(" %d ", row);
                 for (int col = 8; col >= 1; col--) {
