@@ -47,9 +47,20 @@ public class SQLGameDAO implements GameDAO{
     @Override
     public GameCreationResult createGame(GameCreationRequest gameCreationRequest) throws DataAccessException {
         isDatabaseMade();
+
+
         try(var conn = DatabaseManager.getConnection();
             var stmt = conn.prepareStatement(
                     "INSERT INTO gameData (gameID, whiteUsername, blackUsername, gameName, game) VALUES (?, ?, ?, ?, ?)")){
+
+            try (var maxStmt = conn.prepareStatement(
+                    "SELECT MAX(gameID) AS maxID FROM gameData");
+                 var rs = maxStmt.executeQuery()) {
+
+                if (rs.next()) {
+                    nextGameNum = rs.getInt("maxID") + 1;
+                }
+            }
 
 
             stmt.setInt(1, nextGameNum);
@@ -66,7 +77,6 @@ public class SQLGameDAO implements GameDAO{
             stmt.executeUpdate();
 
             GameCreationResult gameCreationResult = new GameCreationResult(nextGameNum);
-            nextGameNum++;
             return gameCreationResult;
 
         } catch (SQLException exception) {
