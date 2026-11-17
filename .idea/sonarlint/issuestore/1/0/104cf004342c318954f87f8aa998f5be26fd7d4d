@@ -1,0 +1,22 @@
+
+o
+java:S1192™"SDefine a constant instead of duplicating this literal "Error: bad request" 4 times.(«ˆºµúÿÿÿÿ
+…
+java:S1488O"jImmediately return this expression instead of assigning it to the temporary variable "gameCreationResult".(¢Ú¾¸úÿÿÿÿ
+w
+java:S1488”"`Immediately return this expression instead of assigning it to the temporary variable "gameData".(®øÙÜ
+V	java:S125x"<This block of commented-out lines of code should be removed.(ÿø×Àúÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(ÿø×Àúÿÿÿÿ
+W	java:S125²"<This block of commented-out lines of code should be removed.(ÿø×Àúÿÿÿÿ
+W	java:S125Â"<This block of commented-out lines of code should be removed.(ÿø×Àúÿÿÿÿ
+H
+java:S1128"-Remove this unused import 'chess.ChessPiece'.(Á€“ˆûÿÿÿÿ
+S
+java:S1128"8Remove this unused import 'com.google.gson.GsonBuilder'.(”«à¬ÿÿÿÿÿ
+S
+java:S1128"=Remove this unused import 'com.google.gson.JsonDeserializer'.(ÿú±æ
+F
+java:S1128	"+Remove this unused import 'model.UserData'.(ˆÆ‰òþÿÿÿÿ
+R
+java:S1128
+"7Remove this unused import 'org.mindrot.jbcrypt.BCrypt'.(‡êÑ“ýÿÿÿÿ

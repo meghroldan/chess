@@ -1,5 +1,6 @@
 package client;
 
+import chess.ChessGame;
 import dataaccess.DataAccessException;
 import model.GameData;
 
@@ -13,6 +14,7 @@ public class ChessClient {
     private ArrayList<GameData> currentGames; //unmapped games
     private String output = "not yet implemented";
     private String authToken;
+    private PrintBoard printBoard;
 
     enum State {
         LOGGED_OUT,
@@ -206,7 +208,9 @@ public class ChessClient {
             int gameID = game.gameID();
 
 
-            //TODO display the board
+            ChessGame chessGame = game.game();
+            printBoard = new PrintBoard(chessGame);
+            printBoard.print("white");
 
             return "Observing game from white perspective. \n" + help();
         }

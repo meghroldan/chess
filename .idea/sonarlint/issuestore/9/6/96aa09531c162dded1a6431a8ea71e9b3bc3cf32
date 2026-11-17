@@ -1,0 +1,8 @@
+
+v
+java:S1488D"`Immediately return this expression instead of assigning it to the temporary variable "authData".(Ä¤””
+Q	java:S125Y"<This block of commented-out lines of code should be removed.(øÕ¦á
+F
+java:S1128"+Remove this unused import 'model.UserData'.(ˆÆ‰òþÿÿÿÿ
+R
+java:S1128"7Remove this unused import 'org.mindrot.jbcrypt.BCrypt'.(‡êÑ“ýÿÿÿÿ
