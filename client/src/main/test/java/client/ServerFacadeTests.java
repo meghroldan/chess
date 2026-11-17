@@ -1,13 +1,10 @@
 package client.test;
 
-import client.ServerFacade;
+import ui.ServerFacade;
 import dataaccess.DataAccessException;
-import model.AuthData;
 import org.junit.jupiter.api.*;
-import request.RegisterRequest;
 import result.RegisterResult;
 import server.Server;
-import service.ClearService;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
