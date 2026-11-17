@@ -28,10 +28,10 @@ public class PrintBoard {
                     boolean lightSquare = (row + col) % 2 == 0;
 
                     if (lightSquare) {
-                        System.out.print(EscapeSequences.SET_BG_COLOR_WHITE);
+                        System.out.print(EscapeSequences.SET_BG_COLOR_MAGENTA);
                     }
                     else {
-                        System.out.print(EscapeSequences.SET_BG_COLOR_MAGENTA);
+                        System.out.print(EscapeSequences.SET_BG_COLOR_WHITE);
                     }
 
                     ChessPosition pos = new ChessPosition(row, col);
@@ -57,10 +57,10 @@ public class PrintBoard {
                     boolean lightSquare = (row + col) % 2 == 0;
 
                     if (lightSquare) {
-                        System.out.print(EscapeSequences.SET_BG_COLOR_WHITE);
+                        System.out.print(EscapeSequences.SET_BG_COLOR_MAGENTA);
                     }
                     else {
-                        System.out.print(EscapeSequences.SET_BG_COLOR_MAGENTA);
+                        System.out.print(EscapeSequences.SET_BG_COLOR_WHITE);
                     }
 
                     ChessPosition pos = new ChessPosition(row, col);
