@@ -146,10 +146,10 @@ public class ChessClient {
                 userGamesString.append(gameData.whiteUsername()).append("\n");
                 userGamesString.append("Black: ");
                 userGamesString.append(gameData.blackUsername()).append("\n\n");
-                userGamesString.append(help());
 
             }
 
+            userGamesString.append(help());
             return userGamesString.toString();
 
         } catch (Exception e) {
@@ -181,7 +181,9 @@ public class ChessClient {
 
             server.joinGame(authToken, color, gameID);
 
-            //TODO display the board
+            ChessGame chessGame = game.game();
+            printBoard = new PrintBoard(chessGame);
+            printBoard.print(color);
 
             return "Joined to game successfully. \n" + help();
         }

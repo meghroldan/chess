@@ -38,6 +38,7 @@ public class PrintBoard {
                     ChessPiece piece = game.getBoard().getPiece(pos);
 
                     System.out.print(getPieceString(piece));
+                    System.out.print(EscapeSequences.RESET_TEXT_COLOR);
                 }
                 System.out.print(EscapeSequences.RESET_BG_COLOR);
                 System.out.println();
@@ -65,6 +66,7 @@ public class PrintBoard {
                     ChessPiece piece = game.getBoard().getPiece(pos);
 
                     System.out.print(getPieceString(piece));
+                    System.out.print(EscapeSequences.RESET_TEXT_COLOR);
                 }
                 System.out.print(EscapeSequences.RESET_BG_COLOR);
                 System.out.println();
