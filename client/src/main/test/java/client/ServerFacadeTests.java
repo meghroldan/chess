@@ -1,6 +1,6 @@
 package client.test;
 
-import ui.ServerFacade;
+import client.ServerFacade;
 import dataaccess.DataAccessException;
 import org.junit.jupiter.api.*;
 import result.RegisterResult;

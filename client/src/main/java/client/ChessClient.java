@@ -1,10 +1,10 @@
-package ui;
+package client;
 
 import chess.ChessGame;
 import dataaccess.DataAccessException;
 import model.GameData;
+import client.ServerFacade;
 import ui.PrintBoard;
-import ui.ServerFacade;
 
 import java.util.*;
 
