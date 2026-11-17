@@ -56,7 +56,6 @@ public class ChessClient {
 
         } else {
             return evalLoggedOut(input);
-
         }
     }
 
@@ -75,10 +74,61 @@ public class ChessClient {
         } catch (Exception ex) {
             return ex.getMessage();
         }
-        //return output;
     }
 
     private String evalLoggedIn(String input){
+        try {
+            String[] tokens = input.toLowerCase().split(" ");
+            String cmd = (tokens.length > 0) ? tokens[0] : "help";
+            String[] params = Arrays.copyOfRange(tokens, 1, tokens.length);
+            return switch (cmd) {
+                case "help" -> help();
+                case "logout" -> logout();
+                case "create" -> createGame();
+                case "list" -> listGames();
+                case "play" -> playGame();
+                case "observe" -> observeGame();
+                default -> help();
+            };
+        } catch (Exception ex) {
+            return ex.getMessage();
+        }
+    }
+
+    private String logout(){
+        try{
+            server.logout(authToken);
+
+            authToken = null;
+            state = State.LOGGED_OUT;
+            return "Logged out successfully. \n" + help();
+        } catch (Exception e) {
+            return "Logout failed. \n" + help();
+        }
+    }
+
+    private String createGame(){
+        System.out.println("Enter game name: ");
+        String gameName = scanner.nextLine();
+
+        try {
+            var auth = server.createGame(authToken, gameName);
+
+            return "Game created successfully. \n" + help();
+        } catch (Exception e) {
+            return "Game unable to be created as entered. \n" + help();
+        }
+    }
+
+    private String listGames(){
+        return output;
+    }
+
+    private String playGame(){
+        return output;
+    }
+
+    private String observeGame(){
         return output;
     }
 
@@ -94,14 +144,31 @@ public class ChessClient {
             authToken = auth.authToken();
             state = State.LOGGED_IN;
 
-            return "Logged in successfully.";
+            return "Logged in successfully. \n" + help();
         } catch (Exception e) {
-            return "Login failed.";
+            return "Login failed. \n" + help();
         }
     }
 
     private String register(){
-        return output;
+        System.out.println("Enter username: ");
+        String username = scanner.nextLine();
+
+        System.out.println("Enter password: ");
+        String password = scanner.nextLine();
+
+        System.out.println("Enter email: ");
+        String email = scanner.nextLine();
+
+        try {
+            var auth = server.register(username, password, email);
+            authToken = auth.authToken();
+            state = State.LOGGED_IN;
+
+            return "Registered successfully.\n" + help();
+        } catch (Exception e) {
+            return "Register failed: " + e.getMessage() + "\n" + help();
+        }
     }
 
     public String help() {
@@ -132,6 +199,12 @@ public class ChessClient {
         } else {
             System.out.print("\n[LOGGED OUT] >>> ");
 
+        }
+    }
+
+    private void assertSignedIn() throws DataAccessException {
+        if (state == State.LOGGED_OUT) {
+            throw new DataAccessException("You must sign in");
         }
     }
 }
