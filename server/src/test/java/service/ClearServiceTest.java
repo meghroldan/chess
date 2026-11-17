@@ -5,10 +5,7 @@ import org.junit.jupiter.api.Test;
 import request.LoginRequest;
 import request.LogoutRequest;
 import request.RegisterRequest;
-import result.LoginResult;
 import result.RegisterResult;
-import service.ClearService;
-import service.UserService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

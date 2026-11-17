@@ -7,8 +7,6 @@ import request.GameJoinRequest;
 import request.RegisterRequest;
 import result.GameCreationResult;
 import result.RegisterResult;
-import service.GameService;
-import service.UserService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
